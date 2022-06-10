@@ -59,11 +59,11 @@
 						<a href="{{ url_for('view_task_in_order', order_id = order.id, task_id = task.id) }}"><img src="../static/images/view_task_icon.png"></a>
 					{% endif %}
 					<a></a>
-					{% if current_user.has_permission('Add and Remove Participants') %}
+					{% if task.status == 0 and current_user.has_permission('Add and Remove Participants') %}
 						<a href="{{ url_for('manage_people_on_task', task_id = task.id, previous = 'manage_order') }}"><img src="../static/images/add_users_icon.png"></a>
 					{% endif %}
 					<a></a>
-					{% if current_user.has_permission('Delete Tasks') %}
+					{% if task.status == 0 and current_user.has_permission('Delete Tasks') %}
 						<a href="{{ url_for('manage_task_in_order', previous = 'manage_order', order_id = order.id, task_id = task.id, instruction = 'delete') }}"><img src="../static/images/delete_icon.png"></a>
 					{% endif %}
 				</div>
