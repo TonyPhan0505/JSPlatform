@@ -405,9 +405,12 @@ def delete_standard_task(service_name, standard_task_id, decision):
 @app.route("/manage_order/<int:order_id>", methods=['GET', 'POST'])
 @login_required
 def manage_order(order_id):
-	order = Order.query.get(order_id)
-	tasks = get_tasks_in_order(order)
-	return render_template("manage_order.html", order = order, tasks = tasks, current_user = current_user)
+	try:
+		order = Order.query.get(order_id)
+		tasks = get_tasks_in_order(order)
+		return render_template("manage_order.html", order = order, tasks = tasks, current_user = current_user)
+	except:
+		return render_template("error_message.html", error_message = "THIS ORDER NO LONGER EXISTS", endpoint = "dashboard")
 
 @app.template_global()
 def get_files_in_task(task_id):
