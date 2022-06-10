@@ -58,7 +58,7 @@
 		<a></a>
 		<a href="{{ url_for('manage_task_in_order', previous = 'traverse_order', order_id = order_id, task_id = current_task.id, instruction = 'edit') }}"><img src="../../static/images/edit_icon.png"></a>
 	{% endif %}
-	{% if current_user.has_permission('Delete Tasks') %}
+	{% if current_task.status == 0 and current_user.has_permission('Delete Tasks') %}
 		<a></a>
 		<a></a>
 		<a href="{{ url_for('manage_task_in_order', previous = 'traverse_order', order_id = order_id, task_id = current_task.id, instruction = 'delete') }}"><img src="../../static/images/delete_icon.png"></a>
