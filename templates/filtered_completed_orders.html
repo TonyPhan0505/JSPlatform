@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Filtered Completed Orders - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('completed_orders_filters') }}" style="color:white">Filters</a>
+		<a class="menu-item" href="{{ url_for('dashboard') }}" style="color:white">Dashboard</a>
+		<a class="menu-item" href="{{ url_for('logout') }}" style="color:white">Log Out</a>
+	</div>
+</nav>
+{% for completed_order in filtered_orders %}
+	<a class="completed-order-card" href="{{ url_for('manage_order', order_id = completed_order.id) }}">
+		<h3>{{ completed_order.service }}</h3>
+		<p><strong>Client: </strong>{{ completed_order.client_name }}</p>
+		<p><strong>Started: </strong>{{ completed_order.time_created }}</p>
+		<p><strong>Completed: </strong>{{ completed_order.time_completed }}</p>
+	</a>
+{% endfor %}
+{% endblock %}

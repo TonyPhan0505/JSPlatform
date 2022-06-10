@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login - JustStart{% endblock %}
+{% block content %}
+<div class="banner">
+	<nav>
+		<div class="nav-items-list">
+			<a class="menu-item" href="{{ url_for('register_company') }}">Register Company</a>
+			<a class="menu-item" href="{{ url_for('register_user') }}">Sign Up</a>
+			<a class="menu-item" href="{{ url_for('login') }}" style="color:white">Login</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="site-name" href="{{ url_for('landing') }}">
+				<h5>JS</h5>
+			</a>
+		</div>
+	</nav>
+	<div class="authentication">
+		<form class="auth-form" method="post">
+			{{ form.hidden_tag() }}
+			<div class="auth-form-label-container">
+				{{ form.email.label }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.email() }}
+			</div>
+			<div class="auth-form-label-container">
+				{{ form.password.label }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.password() }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.submit() }}
+			</div>
+		</form>
+	</div>
+	<div id="forgot-password">
+		<a href="{{ url_for('recover_password_request') }}">
+			<h5>Forgot Password</h5>
+		</a>
+	</div>
+</div>
+{% endblock %}

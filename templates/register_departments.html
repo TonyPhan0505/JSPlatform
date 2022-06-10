@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Register Departments - JustStart{% endblock %}
+{% block content %}
+<div class="banner">
+	<nav>
+		<div class="nav-items-list">
+			<a class="menu-item" href="{{ url_for('platform_settings') }}">Settings</a>
+			<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="site-name" href="{{ url_for('register_departments') }}">
+				<h6>Departments</h6>
+			</a>
+		</div>
+	</nav>
+	<div class="registration-and-navigation">
+		<div id="departments-registration">
+			<form id="departments-registration-form" method="post">
+				{{ form.hidden_tag() }}
+				<div class="departments-registration-form-label-container">
+					{{ form.name.label }}
+				</div>
+				<div class="departments-registration-form-field-container">
+					{{ form.name() }}
+				</div>
+				<div class="departments-registration-form-field-container">
+					{{ form.submit() }}
+				</div>
+			</form>
+		</div>
+		<div class="registration-navigation">
+			<a href="{{ url_for('register_roles') }}">
+				<h5>Register Roles</h5>
+			</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

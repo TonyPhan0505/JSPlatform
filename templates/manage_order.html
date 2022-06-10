@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Manage Order - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="page-name" href="{{ url_for('dashboard') }}">
+			<h5>Dashboard</h5>
+		</a>
+	</div>
+</nav>
+<dev id="order-info-board">
+	<dev id="order-info-card" style="margin: 0; color: black; background-color: white;">
+		<h3>{{ order.service }}</h3>
+		<p><strong>Client: </strong>{{ order.client_name }}</p>
+		<p><strong>Created: </strong>{{ order.time_created }}</p>
+		<p><strong>Updated: </strong>{{ order.time_updated }}</p>
+		<p><strong>Tasks: </strong>{{ order.tasks.count() }}</p>
+		<p><strong>Completion Status: </strong>{{ order.completion_status }} %</p>
+		<div id="resume-traversing">
+			<a class="resume-traversing-button" href="{{ url_for('traverse_order', order_id = order.id) }}">
+				<h5>RESUME</h5>
+			</a>
+			<a style="width: 25px; height:25px;"></a>
+			{% if current_user.has_permission('Delete Orders') %}
+				<a class="resume-traversing-button" href="{{ url_for('delete_order', order_id = order.id, decision = 'PENDING') }}">
+					<h5>DELETE</h5>
+				</a>
+			{% endif %}
+		</div>
+	</dev>
+	<div class="tasks-container" style="height:auto">
+		{% for task in tasks %}
+			<div class="task-card">
+				<h4>{{ task.title }}</h4>
+				<p><strong>Step Number: </strong>{{ task.step_number }}</p>
+				<p><strong>Departments: </strong> {{ task.departments }}</p>
+				<p><strong>Roles: </strong> {{ task.roles }}</p>
+				<p><strong>Description: </strong> {{ task.description[0:10] }}...</p>
+				<p><strong>Participants: </strong> {{ task.users|length }}</p>
+				{% if task.status == 0 %}
+					<p><strong>Status: </strong><em style="color: red">INCOMPLETE</em></p>
+				{% else %}
+					<p><strong>Status: </strong><em style="color: green">COMPLETED</em></p>
+				{% endif %}
+				{% set files = get_files_in_task(task.id) %}
+				{% if files %}
+					<p><strong>Documents:</strong></p>
+					{% for file in files %}
+						<a href="{{ url_for('download_file', filename = file) }}">
+							<p>{{ file }}</p>
+						</a>
+					{% endfor %}
+				{% endif %}
+				<div class="control-tools">
+					{% if task.status == 1 %}
+						<a href="{{ url_for('view_task_in_order', order_id = order.id, task_id = task.id) }}"><img src="../static/images/view_task_icon.png"></a>
+					{% endif %}
+					<a></a>
+					{% if current_user.has_permission('Add and Remove Participants') %}
+						<a href="{{ url_for('manage_people_on_task', task_id = task.id, previous = 'manage_order') }}"><img src="../static/images/add_users_icon.png"></a>
+					{% endif %}
+					<a></a>
+					{% if current_user.has_permission('Delete Tasks') %}
+						<a href="{{ url_for('manage_task_in_order', previous = 'manage_order', order_id = order.id, task_id = task.id, instruction = 'delete') }}"><img src="../static/images/delete_icon.png"></a>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</dev>
+{% endblock %}

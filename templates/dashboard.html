@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - JustStart{% endblock %}
+{% block content %}
+<div class="main">
+	<nav>
+		<div class="nav-items-list">
+			<a href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div id="dashboard-menu-item">
+			<a class="page-name" href="{{ url_for('dashboard') }}">
+				<h5>Dashboard</h5>
+			</a>
+		</div>
+	</nav>
+	<div class="control-section">
+		<div class="task-bar">
+			{% if current_user.role_id and current_user.has_permission('Create Orders') %}
+				<a href="{{ url_for('create_new_order') }}"><img src="static/images/create_new_order_icon.png"></a>
+			{% endif %}
+			<a href="{{ url_for('manage_user') }}"><img src="static/images/user_icon.png"></a>
+			<a href="{{ url_for('procedures') }}"><img src="static/images/modify_procedure_icon.svg"></a>
+			<a href="{{ url_for('statistics') }}"><img src="static/images/statistics_icon.png"></a>
+			{% if current_user.is_host() %}
+				<a href="{{ url_for('platform_settings') }}"><img src="static/images/settings_icon.png"></a>
+			{% endif %}
+		</div>
+		<div class="horizontal-separator"></div>
+		<div id="orders-feed">
+			<div class="orders-container">
+				<h2>ACTIVE</h2>
+				<div class="orders-filtering">
+					<a href="{{ url_for('active_orders_filters') }}" class="filter-button">
+						<img src="../static/images/filter_icon.png">
+					</a>
+				</div>
+				{% for active_order in active_orders %}
+					<a class="active-order-card" href="{{ url_for('manage_order', order_id = active_order.id) }}">
+						<h3>{{ active_order.service }}</h3>
+						<p><strong>Client: </strong>{{ active_order.client_name }}</p>
+						<p><strong>Created: </strong>{{ active_order.time_created }}</p>
+						<p><strong>Updated: </strong>{{ active_order.time_updated }}</p>
+						<p><strong>Tasks: </strong>{{ active_order.tasks.count() }}</p>
+						<p><strong>Completion Status: </strong>{{ active_order.completion_status }} %</p>
+					</a>
+				{% endfor %}
+			</div>
+			<div class="orders-container">
+				<h2>COMPLETED</h2>
+				<div class="orders-filtering">
+					<a href="{{ url_for('completed_orders_filters') }}" class="filter-button">
+						<img src="../static/images/filter_icon.png">
+					</a>
+				</div>
+				{% for completed_order in completed_orders %}
+					<a class="completed-order-card" href="{{ url_for('manage_order', order_id = completed_order.id) }}">
+						<h3>{{ completed_order.service }}</h3>
+						<p><strong>Client: </strong>{{ completed_order.client_name }}</p>
+						<p><strong>Started: </strong>{{ completed_order.time_created }}</p>
+						<p><strong>Completed: </strong>{{ completed_order.time_completed }}</p>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

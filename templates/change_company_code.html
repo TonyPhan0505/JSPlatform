@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Change Company's Code - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('platform_settings') }}">Settings</a>
+		<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="site-name" href="{{ url_for('register_departments') }}">
+			<h6>Company's Code</h6>
+		</a>
+	</div>
+</nav>
+<div id="change-company-code">
+	<form id="change-company-code-form" method="post">
+		{{ form.hidden_tag() }}
+		<div id="change-company-code-form-label-container">
+			{{ form.company_code.label }}
+		</div>
+		<div class="change-company-code-form-field-container">
+			{{ form.company_code() }}
+		</div>
+		<div class="change-company-code-form-field-container">
+			{{ form.submit() }}
+		</div>
+	</form>
+</div>
+{% endblock %}

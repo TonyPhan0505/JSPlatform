@@ -1,0 +1,1132 @@
+html{
+	font-size: 16px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+a{
+	text-decoration: none;
+	color: grey;
+}
+
+a:hover{
+	color: black;
+}
+
+.site-name,
+.page-name{
+	color: snow;
+}
+
+.banner {
+	width: 100%;
+	height: 99%;
+	margin: 0;
+}
+
+nav
+{
+	background-color: black;
+	width: 100%;
+	height: 10%;
+}
+
+.nav-items-list{
+	overflow: hidden;
+	background-color: black;
+	height: 100%;
+	width: 30rem;
+	float: right;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.nav-items-list a{
+	padding: 1.25rem;
+	color: white;
+	background-color: black;
+}
+
+.nav-site-name,
+#dashboard-menu-item
+{
+	float: left;
+	height: 100%;
+	width: 7.5rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #E1C16E;
+	overflow: auto;
+}
+
+#main-flex-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-content: space-evenly;
+	width: 100%;
+	height: 90%;
+	background-color: rgb(233, 230, 230);
+}
+
+#left-flex-container{
+	width: 40%;
+	height: 50%;
+	display: inline-flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background-color: rgb(233, 230, 230);
+}
+
+#left-flex-container a{
+	width: 50%;
+	height: 16%;
+	margin: 5%;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	background-color: black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-evenly;
+}
+
+#right-flex-container{
+	width: 40%;
+	height: 50%;
+	display: inline-flex;
+	align-items: center;
+	text-align: center;
+}
+
+img{
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+footer{
+	padding: 2rem 0;
+	font-size: 1.125rem;
+	color: #999999;
+	text-align: center;
+	height: 1%;
+	width: 100%;
+}
+
+.authentication,
+.filters,
+#create-new-order
+{
+	width: 100%;
+	height: 88%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.auth-form,
+.filters-form,
+#create-new-order-form
+{
+	background-color: black;
+	width: 50%;
+	height: 90%;
+	border-radius: 0.1875rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+.auth-form-label-container,
+.filters-form-label-container,
+.create-new-order-form-label-container
+{
+	display: block;
+	width: 70%;
+	height: 6%;
+	color: white;
+	text-align: center;
+}
+
+.auth-form-field-container,
+.filters-form-field-container,
+.create-new-order-form-field-container
+{
+	display: flex;
+	width: 70%;
+	height: 6%;
+	justify-content: center;
+	color: black;
+}
+
+.create-new-order-form input{
+	width: 100%;
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.control-section{
+	width: 100%;
+	height: 90%;
+}
+
+.task-bar{
+	width: 100%;
+	height: 11%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.horizontal-separator{
+	width: 80%;
+	height: 0.25%;
+	margin: 0.25% 10%;
+	background-color: grey;
+}
+
+#orders-feed{
+	width: 100%;
+	height: 88.25%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.task-bar a{
+	width: 1.875rem;
+	height: 1.875rem;
+}
+
+.orders-container
+{
+	width: 47%;
+	height: 98%;
+	border: 0.125rem solid #E1C16E;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	text-align: center;
+	overflow: auto;
+}
+
+.orders-filtering{
+	width: 100%;
+	height: 1.25rem;
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.filter-button{
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.active-order-card,
+.completed-order-card{
+	width: 90%;
+	height: auto;
+	background-color: #ffb3b3;
+	color: white;
+	text-align: left;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding: 0.75rem 0.25rem;
+	margin: 0.625rem 0.625rem;
+	display: block;
+}
+
+#order-info-card{
+	width: 90%;
+	height: 50%;
+	text-align: left;
+	padding: 0.75rem 0.25rem;
+	margin: 0.625rem 0.625rem;
+	display: block;
+}
+
+.completed-order-card{
+	background-color: #b3ffb3;
+	color: black;
+}
+
+#create-new-procedure-button{
+	width: 70%;
+	height: 88%;
+	overflow: hidden;
+	margin-top: 0.75%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-evenly;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	background-color: black;
+}
+
+#procedure-creation{
+	background-color: grey;
+	width: 100%;
+	height: 53%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#standard-tasks-creation{
+	background-color: grey;
+	width: 100%;
+	height: 55%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#procedure-creation-form{
+	background-color: grey;
+	width: 100%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+#standard-tasks-creation-form{
+	background-color: grey;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+.procedure-creation-form-label-container{
+	display: block;
+	width: 100%;
+	height: 28%;
+	text-align: center;
+	color: white;
+}
+
+.standard-tasks-creation-form-label-container{
+	display: block;
+	width: 70%;
+	height: 7%;
+	text-align: center;
+	color: white;
+}
+
+.procedure-creation-form-field-container{
+	display: flex;
+	width: 70%;
+	height: 30%;
+	justify-content: center;
+	align-items: center;
+}
+
+.standard-tasks-creation-form-field-container{
+	display: flex;
+	width: 80%;
+	height: 10%;
+	justify-content: center;
+}
+
+.tasks-container
+{
+	width: 100%;
+	height: 45%;
+	background-color: white;
+	overflow: auto;
+}
+
+#procedures-feed{
+	width: 100%;
+	height: 88.125%;
+	background-color: white;
+	margin-bottom: 0.125%;
+	overflow: auto;
+}
+
+.task-card,
+.procedure-card{
+	width: 90%;
+	height: auto;
+	background-color: white;
+	border: 0.125rem solid #E1C16E;
+	color: black;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	margin: 4.8% 1rem;
+}
+
+.control-tools
+{
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100%;
+	height: 1.875rem;
+}
+
+.control-tools a
+{
+	width: 1.25rem;
+	height: 1.25rem;
+	overflow: hidden;
+}
+
+#resume-traversing{
+	width: 100%;
+	height: 1.5625rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.resume-traversing-button{
+	width: 5.625rem;
+	height: 1.5625rem;
+	color: white;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#task-editing,
+#task-insertion,
+#departments-registration,
+#recovery,
+#roles-registration
+{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#task-editing-form,
+#task-insertion-form
+{
+	background-color: black;
+	width: 50%;
+	height: 100%;
+	border-radius: 0.1875rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: space-between;
+	overflow: hidden;
+}
+
+.task-editing-form-label-container,
+.task-insertion-form-label-container
+{
+	width: 100%;
+	height: 6%;
+	color: white;
+	text-align: center;
+}
+
+.task-editing-form-field-container,
+.task-insertion-form-field-container
+{
+	display: flex;
+	width: 100%;
+	height: 6%;
+	justify-content: center;
+}
+
+#task-editing-form-field-special-container,
+#task-insertion-form-field-special-container
+{
+	display: flex;
+	width: 100%;
+	height: 20rem;
+	justify-content: center;
+}
+
+
+#task-editing-form input,
+#task-insertion-form input
+{
+	width: 80%;
+	height: 100%;
+}
+
+
+#task-editing-form textarea,
+#task-insertion-form textarea
+{
+	width: 80%;
+	height: 100%;
+}
+
+.registration-and-navigation,
+#password-recovery{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.registration-navigation,
+#forgot-password{
+	width: 100%;
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.registration-navigation a,
+#forgot-password a{
+	width: 50%;
+	height: 40%;
+	background-color: white;
+	border: 0.125rem solid black;
+	border-radius: 0.3125rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-evenly;
+}
+
+#departments-registration-form,
+#roles-registration-form,
+#password-recovery-form
+{
+	background-color: black;
+	width: 50%;
+	height: 50%;
+	border-radius: 0.1875rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+.departments-registration-form-label-container,
+#password-recovery-form-label-container,
+.roles-registration-form-label-container
+{
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 10%;
+}
+
+.departments-registration-form-field-container,
+.password-recovery-form-field-container,
+.roles-registration-form-field-container
+{
+	display: flex;
+	width: 100%;
+	height: 10%;
+	justify-content: center;
+}
+
+.message-wall{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.message{
+	width: 60%;
+	height: 10%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.ok,
+#YES,
+#NO
+{
+	width: 60%;
+	height: 3rem;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ok a,
+#YES a,
+#NO a
+{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+#register-department-and-role-for-user{
+	background-color: #FFFACD;
+	color: black;
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#register-department-and-role-for-user-form{
+	background-color: white;
+	width: 50%;
+	height: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+.register-department-and-role-for-user-form-label-container{
+	width: 80%;
+	height: 6%;
+	text-align: center;
+}
+
+.register-department-and-role-for-user-form-field-container{
+	width: 80%;
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+}
+
+#order-info-board{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+}
+
+#task-info-board{
+	width: 100%;
+	height: 84%;
+	overflow: auto;
+	background-color: black;
+	color: white;
+	text-align: left;
+}
+
+#task-info-board h2,
+#task-info-board strong{
+	color: #E1C16E;
+	width: 100%;
+	height: auto;
+	padding-left: 3.125rem;
+}
+
+#traverse-order-control-tools{
+	width: 100%;
+	height: 6%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border: 0;
+	overflow: hidden;
+}
+
+#traverse-order-control-tools a{
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+#added-people-container{
+	width: 100%;
+	height: 45%;
+	text-align: left;
+	overflow: auto;
+}
+
+#relevant-people-container{
+	width: 100%;
+	height: 45%;
+	text-align: left;
+	overflow: auto;
+}
+
+#added-person-card,
+#relevant-person-card
+{
+	width: 90%;
+	height: 2.5rem;
+	background-color: #FFEFD5;
+	text-align: left;
+	border-radius: 0.125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	margin: 0.9% 2.47%;
+	display: block;
+}
+
+.email-of-user{
+	width: 33.33333%;
+	height: 2.5rem;
+	background-color: #FFEFD5;
+	float: left;
+	text-align: left;
+	overflow: hidden;
+}
+
+.name-of-user{
+	width: 33.33333%;
+	height: 2.5rem;
+	background-color: #FFEFD5;
+	float: left;
+	text-align: center;
+	overflow: hidden;
+}
+
+#removal-of-participant,
+#add-participant{
+	width: 33.33333%;
+	height: 2.5rem;
+	background-color: #FFEFD5;
+	float: left;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#remove-participant-button,
+#add-participant-button{
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: #FFEFD5;
+}
+
+#performance-summary{
+	width: 100%;
+	height: 5.5rem;
+	background-color: black;
+	color: #E1C16E;
+	overflow: hidden;
+}
+
+#completed-task-stat,
+#total-tasks-stat,
+#performance-stat{
+	width: 33.33333333%;
+	height: 5.5rem;
+	background-color: black;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+}
+
+#info-summary{
+	width: 100%;
+	height: auto;
+	padding-top: 1.25rem;
+	padding-left: 1.25rem;
+	overflow: hidden;
+}
+
+.edit-profile-button,
+#register-departments-button,
+#register-roles-button,
+#change-company-code-button{
+	width: 80%;
+	height: 1.5625rem;
+	margin: 0 10%;
+	background-color: white;
+	border: 0.125rem solid black;
+	border-radius: 0.3125rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.profile-editing{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.profile-editing-form{
+	width: 60%;
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	overflow: hidden;
+	color: black;
+}
+
+.profile-editing-form-label-container{
+	width: 100%;
+	height: 12%;
+	text-align: center;
+}
+
+.profile-editing-form-field-container{
+	width: 100%;
+	height: 12%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.permission-setting-title{
+	width: 100%;
+	height: 2.5rem;
+	text-align: center;
+	margin-bottom: 0.9375rem;
+}
+
+.permission-setting{
+	width: 100%;
+	height: 25rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	border-radius: 0.3125rem;
+	border: 0.125rem solid #E1C16E;
+	margin-bottom: 0.9375rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+}
+
+.listed,
+.allowed{
+	width: 45%;
+	height: 80%;
+	background-color: grey;
+	color: white;
+	overflow: auto;
+	text-align: center;
+}
+
+.role-card{
+	width: 90%;
+	height: 2.5rem;
+	background-color: white;
+	color: black;
+	text-align: left;
+	border-radius: 0.3125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding: 0.25rem 0.75rem;
+	margin: 0.625rem 0.425rem;
+	display: block;
+}
+
+.role{
+	width: 50%;
+	height: 100%;
+	background-color: white;
+	float: left;
+	text-align: left;
+	font-size: 0.75rem;
+}
+
+.role-managing-icon{
+	width: 50%;
+	height: 100%;
+	background-color: white;
+	float: left;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.role-managing-button,
+#role-deletion-button,
+#department-deletion-button,
+#employee-deletion-button{
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: white;
+}
+
+#empower-button,
+#approval a{
+	width: 5.625rem;
+	height: 1.375rem;
+	background-color: white;
+	border: 0.0625rem solid goldenrod;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.85rem;
+}
+
+#roles-feed,
+#departments-feed,
+#employees-feed,
+#pending-employees-feed
+{
+	width: 98%;
+	height: 18.75rem;
+	overflow: auto;
+	text-align: left;
+	border-radius: 0.3125rem;
+	border: 0.125rem solid #E1C16E;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+}
+
+#role,
+#department,
+#employee,
+#pending-employee{
+	width: 90%;
+	height: 2.5rem;
+	text-align: left;
+	border: 0.09375rem solid #FFEFD5;
+	border-radius: 0.125rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	margin: 0.9% 2.47%;
+	display: block;
+}
+
+#file-card{
+	background-color: black;
+	width: 90%;
+	height: 1.875rem;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	margin: 0 3.125rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#file-card a{
+	width: 50%;
+	height: 1.875rem;
+	text-align: left;
+	overflow: auto;
+}
+
+#role-name,
+#department-name,
+#employee-email{
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-align: left;
+	overflow: hidden;
+}
+
+
+#role-deletion-icon,
+#department-deletion-icon,
+#control-employee-access,
+#approval{
+	width: 50%;
+	height: 100%;
+	float: left;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.statistics-title{
+	width: 100%;
+	height: 2.5rem;
+	margin-bottom: 0.9375rem;
+	text-align: center;
+}
+
+.ranking-board{
+	width: 100%;
+	height: 25rem;
+	overflow: auto;
+	border: 0.125rem solid #E1C16E;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	margin-bottom: 0.9375rem;
+}
+
+.ranking-card{
+	width: 99%;
+	height: 1.875rem;
+	text-align: left;
+	border-radius: 0.125rem;
+	border: 0.0625rem solid black;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding-top: 0.1875rem;
+	padding-bottom: 0.125rem;
+	margin: 1.25rem 0.5%;
+	display: block;
+}
+
+.ranking-card div,
+.column-headings div{
+	width: 25%;
+	height: 100%;
+	float: left;
+	text-align: center;
+	overflow: auto;
+}
+
+.column-headings{
+	width: 100%;
+	height: 1.25rem;
+	margin: 1.5625rem 0;
+}
+
+#services-proportion{
+	width: 100%;
+	height: 18.75rem;
+	overflow: auto;
+	padding-top: 1.4375rem;
+	padding-left: 1.875rem;
+}
+
+#orders-statistics{
+	width: 100%;
+	height: 6.25rem;
+}
+
+#orders-statistics h2{
+	padding-left: 1.875rem;
+	padding-top: 0.375rem;
+	padding-bottom: 1rem;
+}
+
+#file-upload-form{
+	width: 11.25rem;
+	height: 7rem;
+	background-color: black;
+	overflow: hidden;
+	margin-left: 3.125rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.file-upload-form-field-container{
+	width: 11rem;
+	height: 2.5rem;
+	background-color: black;
+	margin: 0;
+}
+
+#change-company-code{
+	width: 100%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#change-company-code-form{
+	width: 50%;
+	height: 40%;
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#change-company-code-form-label-container{
+	width: 100%;
+	height: 30%;
+	background-color: black;
+	text-align: center;
+}
+
+.change-company-code-form-field-container{
+	width: 100%;
+	height: 30%;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#notifications-board{
+	width: 97%;
+	height: 21.875rem;
+	overflow: scroll;
+	margin-bottom: 0.9375rem;
+}
+
+#notification-card{
+	width: 97%;
+	height: auto;
+	text-align: left;
+	border-radius: 0.125rem;
+	border: 0.0625rem solid black;
+	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
+	padding-left: 1.4rem;
+	padding-right: 1.4rem;
+	padding-top: 0.1875rem;
+	padding-bottom: 0.125rem;
+	margin: 1.25rem 0.5%;
+	display: block;
+	overflow: auto;
+}
+
+#notification-controls{
+	width: 100%;
+	height: 1.875rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0;
+}
+
+#notification-controls a{
+	width: 1.25rem;
+	height: 1.25rem;
+	overflow: hidden;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 825px){
+	html{
+		font-size: 10px;
+	}
+}

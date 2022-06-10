@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Profile - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a href="{{ url_for('dashboard') }}">Dashboard</a>
+		<a href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="page-name" href="{{ url_for('manage_user') }}">
+			<h5>Profile</h5>
+		</a>
+	</div>
+</nav>
+<div id="performance-summary">
+	<div id="completed-task-stat">
+		<h3>{{ number_of_tasks_completed }}</h3>
+		<h4>Tasks Completed</h4>
+	</div>
+	<div id="total-tasks-stat">
+		<h3>{{ number_of_tasks }}</h3>
+		<h4>Tasks</h4>
+	</div>
+	<div id="performance-stat">
+		<h3>{{ performance_point }}</h3>
+		<h4>Points</h4>
+	</div>
+</div>
+<div id="info-summary">
+	<p style="color:red;"><i>*You should regularly delete completed orders that are from a long time ago.</i></p>
+	<h3>{{ user_name }}</h3>
+	<h5>Email: </h5><p>{{ email }}</p>
+	<h5>Company: </h5><p>{{ company_name }}</p>
+	<h5>Company's code: </h5><p>{{ company_code }}</p>
+	<h5>CEO/Director: </h5><p>{{ ceo }}</p>
+	<h5>Host: </h5><p>{{ host_name }}</p>
+	<h5>Host's email: </h5><p>{{ host_email }}</p>
+	<h5>Department: </h5><p>{{ department }}</p>
+	<h5>Role: </h5><p>{{ role }}</p>
+	{% if department != 'Unregistered' %}
+		<h5>Number of tasks assigned to your department: </h5><p>{{ number_of_tasks_for_department }}</p>
+		<h5>Number of tasks your department completed: </h5><p>{{ number_of_completed_tasks_for_department }}</p>
+	{% endif %}
+	<h5>Notifications:</h5>
+	{% if not notifications %}
+		<p>No new notifications.</p>
+	{% else %}
+		<div id="notifications-board">
+			{% for notification in notifications %}
+				{% set redirection = notification.redirection %}
+				{% set title = notification.title %}
+				{% set time_created = notification.time_created %}
+				{% set message = notification.message %}
+				<div id="notification-card">
+					<h4>{{ title }}</h4>
+					<h5>{{ time_created }}</h5>
+					<p>{{ message }}</p>
+					<div id="notification-controls">
+						{% if redirection %}
+							<a href="{{ redirection }}"><img src="../static/images/go_icon.png"></a>
+						{% endif %}
+						<a></a>
+						<a href="{{ url_for('delete_notification', notification_id = notification.id, _anchor = 'notifications-board') }}"><img src="../static/images/delete_icon.png"></a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+</div>
+<a class="edit-profile-button" href="{{ url_for('change_password') }}">
+	<h4>Change Password</h4>
+</a>
+<br>
+<br>
+<a class="edit-profile-button" href="{{ url_for('change_department_and_role') }}">
+	<h4>Change/Add Department & Role</h4>
+</a>
+{% endblock %}

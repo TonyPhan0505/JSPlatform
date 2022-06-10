@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Procedures - JustStart{% endblock %}
+{% block content %}
+<div class="main">
+	<nav>
+		<div class="nav-items-list">
+			<a href="{{ url_for('dashboard') }}">Dashboard</a>
+			<a href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="page-name" href="{{ url_for('procedures') }}">
+				<h6>Procedures</h6>
+			</a>
+		</div>
+	</nav>
+	<div class="control-section">
+		{% if current_user.has_permission('Create Procedures') %}
+			<div class="task-bar">
+				<a id="create-new-procedure-button" href="{{ url_for('manage_procedure', service_name = 'new') }}">
+					<h4>Create New Procedure</h4>
+				</a>
+			</div>
+			<div class="horizontal-separator"></div>
+		{% endif %}
+		<div id="procedures-feed">
+			{% for procedure in procedures %}
+				<div class="procedure-card">
+					<h4>Service: {{ procedure.service }}</h4>
+					<p>{{ procedure.standard_tasks.count() }} standard tasks</p>
+					<div class="control-tools">
+						<a href="{{ url_for('manage_procedure', service_name = procedure.service) }}"><img src="../static/images/edit_icon.png"></a>
+						<a></a>
+						{% if current_user.has_permission('Delete Procedures') %}
+							<a href="{{ url_for('delete_procedure', procedure_id = procedure.id, decision = 'PENDING') }}"><img src="../static/images/delete_icon.png"></a>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

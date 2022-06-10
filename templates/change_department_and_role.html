@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Change Department and Role - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a href="{{ url_for('manage_user') }}">Profile</a>
+		<a href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="site-name">
+			<h5>JS</h5>
+		</a>
+	</div>
+</nav>
+<div class="profile-editing">
+	<form class="profile-editing-form" method="post">
+		{{ form.hidden_tag() }}
+		<div class="profile-editing-form-label-container">
+			{{ form.department.label }}
+		</div>
+		<div class="profile-editing-form-field-container">
+			{{ form.department() }}
+		</div>
+		<div class="profile-editing-form-label-container">
+			{{ form.role.label }}
+		</div>
+		<div class="profile-editing-form-field-container">
+			{{ form.role() }}
+		</div>
+		<div class="profile-editing-form-field-container">
+			{{ form.submit() }}
+		</div>
+	</form>
+</div>
+{% endblock %}

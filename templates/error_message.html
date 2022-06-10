@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Error Message - JustStart{% endblock %}
+{% block content %}
+<div class="message-wall">
+	<div class="message">
+		<h3>{{error_message}}</h3>
+	</div>
+	<div class="ok">
+		{% if error_message ==  "ONE OR MORE OF THE DEPARTMENTS/ROLES IS NOT REGISTERED" or error_message == "THIS PROCEDURE WAS ALREADY CREATED" %}
+			<a href="{{ url_for(endpoint, service_name = service_name) }}">OK</a>
+		{% elif error_message == "UNREGISTERED DEPARTMENT(S) DETECTED" %}
+			<a href="{{ url_for(endpoint, order_id = order_id, current_step_number = current_step_number) }}">OK</a>
+		{% elif error_message == "THIS FILE ALREADY EXISTED. PLEASE CHANGE YOUR FILENAME OR REMOVE THE PREVIOUS ONE." %}
+			<a href="{{ url_for(endpoint, order_id = order_id, task_id = task_id) }}">OK</a>
+		{% else %}
+			<a href="{{ url_for(endpoint) }}">OK</a>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Completed Orders Filters - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('logout') }}" style="color:white">Log Out</a>
+	</div>
+	<div id="dashboard-menu-item">
+		<a class="page-name" href="{{ url_for('dashboard') }}">
+			<h5>Dashboard</h5>
+		</a>
+	</div>
+</nav>
+<div class="filters">
+	<form class="filters-form" method="post">
+		{{ form.hidden_tag() }}
+		<div class="filters-form-label-container">
+			{{ form.service.label }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.service() }}
+		</div>
+		<div class="filters-form-label-container">
+			{{ form.client_name.label }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.client_name() }}
+		</div>
+		<div class="filters-form-label-container">
+			{{ form.day.label }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.day() }}
+		</div>
+		<div class="filters-form-label-container">
+			{{ form.month.label }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.month() }}
+		</div>
+		<div class="filters-form-label-container">
+			{{ form.year.label }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.year() }}
+		</div>
+		<div class="filters-form-field-container">
+			{{ form.submit() }}
+		</div>
+	</form>
+</div>
+{% endblock %}

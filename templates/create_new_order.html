@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Create New Order - JustStart{% endblock %}
+{% block content %}
+<div class="main">
+	<nav>
+		<div class="nav-items-list">
+			<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="page-name" href="{{ url_for('dashboard') }}">
+				<h5>Dashboard</h5>
+			</a>
+		</div>
+	</nav>
+	<div id="create-new-order">
+		<form id="create-new-order-form" method='post'>
+			{{ form.hidden_tag() }}
+			<div class="create-new-order-form-label-container">
+				{{ form.service.label }}
+			</div>
+			<div class="create-new-order-form-field-container">
+				{{ form.service() }}
+			</div>
+			<div class="create-new-order-form-label-container">
+				{{ form.client_name.label }}
+			</div>
+			<div class="create-new-order-form-field-container">
+				{{ form.client_name() }}
+			</div>
+			<div class="create-new-order-form-field-container">
+				{{ form.submit() }}
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

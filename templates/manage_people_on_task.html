@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Manage People on Task - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		{% if previous == 'manage_order' %}
+			<a class="menu-item" href="{{ url_for('manage_order', order_id = task.order_id) }}">Back</a>
+		{% elif previous == 'traverse_order' %}
+			<a class="menu-item" href="{{ url_for('traverse_order', order_id = task.order_id) }}">Back</a>
+		{% endif %}
+		<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="site-name">
+			<h5>JS</h5>
+		</a>
+	</div>
+</nav>
+<div id="added-people-container">
+	<h3>Added:</h3>
+	{% for user in task.users %}
+		<div id="added-person-card">
+			<div class="email-of-user"><p>{{ user.email }}</p></div>
+			<div class="name-of-user"><p>{{ user.name }}</p></div>
+			<div id="removal-of-participant">
+				<a id="remove-participant-button" href="{{ url_for('remove_person_from_task', previous = previous, task_id = task.id, user_id = user.id) }}"><img src="../../static/images/remove_icon.png"></a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+<div id="relevant-people-container">
+	<h3>Relevant People:</h3>
+	{% for person in relevant_people %}
+		<div id="relevant-person-card">
+			<div class="email-of-user"><p>{{ person.email }}</p></div>
+			<div class="name-of-user"><p>{{ person.name }}</p></div>
+			<div id="add-participant">
+				<a id="add-participant-button" href="{{ url_for('add_person_to_task', previous = previous, task_id = task.id, user_id = person.id) }}"><img src="../../static/images/add_users_icon.png"></a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}

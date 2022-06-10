@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Are You Sure? - JustStart{% endblock %}
+{% block content %}
+<div class="message-wall">
+	<div class="message">
+		<h3>{{ confirmation_message }}</h3>
+	</div>
+	{% if confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS PROCEDURE?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, procedure_id = procedure_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS TASK IN THIS PROCEDURE?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, service_name = service_name, standard_task_id = standard_task_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS TASK IN THIS ORDER?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, previous = previous, order_id = order_id, task_id = task_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS ORDER?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, order_id = order_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS ROLE?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, role_id = role_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS DEPARTMENT?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, department_id = department_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO REMOVE THIS EMPLOYEE?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, employee_id = employee_id, decision = 'YES') }}">YES</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO REMOVE THIS FILE?" %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, order_id = order_id, task_id = task_id, filename = filename, decision = 'YES') }}">YES</a>
+		</div>
+	{% else %}
+		<div id="YES">
+			<a href="{{ url_for(yes_endpoint, decision = 'YES') }}">YES</a>
+		</div>
+	{% endif %}
+
+	<br><br>
+
+	{% if confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS TASK IN THIS PROCEDURE?" %}
+		<div id="NO">
+			<a href="{{ url_for(no_endpoint, service_name = service_name) }}">NO</a>
+		</div>
+	{% elif confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS TASK IN THIS ORDER?" or confirmation_message == "ARE YOU SURE YOU WANT TO DELETE THIS ORDER?" or confirmation_message == "ARE YOU SURE YOU WANT TO REMOVE THIS FILE?" %}
+		<div id="NO">
+			<a href="{{ url_for(no_endpoint, order_id = order_id) }}">NO</a>
+		</div>
+	{% else %}
+		<div id="NO">
+			<a href="{{ url_for(no_endpoint) }}">NO</a>
+		</div>
+	{% endif %}
+</div>
+{% endblock %}

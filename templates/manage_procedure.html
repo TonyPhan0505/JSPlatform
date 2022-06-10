@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Manage Procedure - JustStart{% endblock %}
+{% block content %}
+<div class="main">
+	<nav>
+		<div class="nav-items-list">
+			<a href="{{ url_for('procedures') }}">Procedures</a>
+			<a href="{{ url_for('dashboard') }}">Dashboard</a>
+			<a href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div class="nav-site-name">
+			{% if service_name == 'new' %}
+				<a class="page-name" href="{{ url_for('manage_procedure', service_name = service_name) }}">
+					<h6>Procedure</h6>
+				</a>
+			{% else %}
+				<a class="page-name" href="{{ url_for('manage_procedure', service_name = service_name) }}">
+					<h6>{{ service_name }}</h6>
+				</a>
+			{% endif %}
+		</div>
+	</nav>
+	<div class="control-section">
+		{% if service_name == 'new' %}
+			<div id="procedure-creation">
+				<form id="procedure-creation-form" method="post">
+					{{ form.hidden_tag() }}
+					<div class="procedure-creation-form-label-container">
+						{{ form.service.label }}
+					</div>
+					<div class="procedure-creation-form-field-container">
+						{{ form.service() }}
+					</div>
+					<div class="procedure-creation-form-field-container">
+						{{ form.submit() }}
+					</div>
+				</form>
+			</div>
+		{% else %}
+			{% if current_user.has_permission('Create Standard Tasks') %}
+				<div id="standard-tasks-creation">
+					<form id="standard-tasks-creation-form" method="post">
+						{{ form.hidden_tag() }}
+						<div class="standard-tasks-creation-form-label-container">
+							{{ form.title.label }}
+						</div>
+						<div class="standard-tasks-creation-form-field-container">
+							{{ form.title() }}
+						</div>
+						<div class="standard-tasks-creation-form-label-container">
+							{{ form.departments.label }}
+						</div>
+						<div class="standard-tasks-creation-form-field-container">
+							{{ form.departments() }}
+						</div>
+						<div class="standard-tasks-creation-form-label-container">
+							{{ form.roles.label }}
+						</div>
+						<div class="standard-tasks-creation-form-field-container">
+							{{ form.roles() }}
+						</div>
+						<div class="standard-tasks-creation-form-label-container">
+							{{ form.description.label }}
+						</div>
+						<div class="standard-tasks-creation-form-field-container">
+							{{ form.description() }}
+						</div>
+						<div class="standard-tasks-creation-form-field-container">
+							{{ form.submit() }}
+						</div>
+					</form>
+				</div>
+			{% endif %}
+		{% endif %}
+		
+		<div class="tasks-container">
+			{% for standard_task in standard_tasks %}
+				<div class="task-card">
+					<h4>{{ standard_task.title }}</h4>
+					<p><strong>Step Number: </strong>{{standard_task.step_number}}</p>
+					<p><strong>Departments: </strong>{{standard_task.departments}}</p>
+					<p><strong>Roles: </strong>{{standard_task.roles}}</p>
+					<p><strong>Description: </strong>{{ standard_task.description[0:10] }}...</p>
+					<div class="control-tools">
+						{% if current_user.has_permission('Edit Standard Tasks') %}
+							<a href="{{ url_for('manage_standard_task', service_name = service_name, standard_task_id = standard_task.id, instruction = 'edit') }}"><img src="../static/images/edit_icon.png"></a>
+						{% endif %}
+						<a></a>
+						{% if current_user.has_permission('Delete Standard Tasks') %}
+							<a href="{{ url_for('manage_standard_task', service_name = service_name, standard_task_id = standard_task.id, instruction = 'delete') }}"><img src="../static/images/delete_icon.png"></a>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

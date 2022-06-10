@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Home - JustStart{% endblock %}
+{% block content %}
+<div class="banner">
+	<nav>
+		<div class="nav-items-list">
+			<a class="menu-item" href="{{ url_for('register_company') }}">Register Company</a>
+			<a class="menu-item" href="{{ url_for('register_user') }}">Sign Up</a>
+			<a class="menu-item" href="{{ url_for('login') }}">Login</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="site-name" href="{{ url_for('landing') }}">
+				<h5>JS</h5>
+			</a>
+		</div>
+	</nav>
+	<div id="main-flex-container">
+		<dev id="left-flex-container">
+			<a href="{{ url_for('register_company') }}">
+				<h5>Register Company</h5>
+			</a>
+			<a href="{{ url_for('register_user') }}">
+				<h5>Sign Up</h5>
+			</a>
+			<a href="{{ url_for('login') }}">
+				<h5>Sign In</h5>
+			</a>
+		</dev>
+		<dev id="right-flex-container">
+			<img src="static/images/banner_image.png" alt="People working."/>
+		</dev>
+	</div>
+</div>
+<footer>
+	<span>&copy; Property of Binh Huy Phan</span>
+</footer>
+{% endblock %}

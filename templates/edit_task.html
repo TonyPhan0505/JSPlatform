@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %} {{ service_name }} | Edit Task - JustStart{% endblock %}
+{% block content %}
+<div class="main">
+	<nav>
+		<div class="nav-items-list">
+			{% if back_endpoint == 'manage_procedure' %}
+				<a class="menu-item" href="{{ url_for(back_endpoint, service_name = service_name) }}">Manage Procedure</a>
+			{% elif back_endpoint == 'manage_order' %}
+				<a class="menu-item" href="{{ url_for(back_endpoint, order_id = order_id) }}">Manage Order</a>
+			{% elif back_endpoint == 'traverse_order' %}
+				<a class="menu-item" href="{{ url_for(back_endpoint, order_id = order_id) }}">Task</a>
+			{% endif %}
+			<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="site-name">
+				<h5>JS</h5>
+			</a>
+		</div>
+	</nav>
+	
+	<div id="task-editing">
+		<form id="task-editing-form" method="post">
+			{{ form.hidden_tag() }}
+			<div class="task-editing-form-label-container">
+				{{ form.title.label }}
+			</div>
+			<div class="task-editing-form-field-container">
+				{{ form.title() }}
+			</div>
+			<div class="task-editing-form-label-container">
+				{{ form.departments.label }}
+			</div>
+			<div class="task-editing-form-field-container">
+				{{ form.departments() }}
+			</div>
+			<div class="task-editing-form-label-container">
+				{{ form.roles.label }}
+			</div>
+			<div class="task-editing-form-field-container">
+				{{ form.roles() }}
+			</div>
+			<div class="task-editing-form-label-container">
+				{{ form.description.label }}
+			</div>
+			<div id="task-editing-form-field-special-container">
+				{{ form.description() }}
+			</div>
+			<div class="task-editing-form-field-container">
+				{{ form.submit() }}
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

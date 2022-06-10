@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Register Company - JustStart{% endblock %}
+{% block content %}
+<div class="banner">
+	<nav>
+		<div class="nav-items-list">
+			<a class="menu-item" href="{{ url_for('register_user') }}">Sign Up</a>
+			<a class="menu-item" href="{{ url_for('login') }}">Login</a>
+		</div>
+		<div class="nav-site-name">
+			<a class="site-name" href="{{ url_for('landing') }}">
+				<h5>JS</h5>
+			</a>
+		</div>
+	</nav>
+	<div class="authentication">
+		<form class="auth-form" method="post">
+			{{ form.hidden_tag() }}
+			<div class="auth-form-label-container">
+				{{ form.name.label }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.name() }}
+			</div>
+			<div class="auth-form-label-container">
+				{{ form.ceo.label }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.ceo() }}
+			</div>
+			<div class="auth-form-label-container">
+				{{ form.company_code.label }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.company_code() }}
+			</div>
+			<div class="auth-form-field-container">
+				{{ form.submit() }}
+			</div>
+		</form>
+	</div>
+</div>
+<footer>
+	<span>&copy; Created by Binh Huy Phan</span>
+</footer>
+{% endblock %}

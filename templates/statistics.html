@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Statistics - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a href="{{ url_for('dashboard') }}">Dashboard</a>
+		<a href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="page-name" href="{{ url_for('statistics') }}">
+			<h5>Statistics</h5>
+		</a>
+	</div>
+</nav>
+
+<div class="statistics-title">
+	<h2>Employees Ranking Board</h2>
+</div>
+<div class="ranking-board">
+	<div class="column-headings">
+		<div>RANK</div>
+		<div>NAME</div>
+		<div>POINTS</div>
+		<div>TASKS</div>
+	</div>
+	{% for info in employees_ranking_board %}
+		<div class="ranking-card">
+			<div>{{ info[0] }}</div>
+			<div>{{ info[1] }}</div>
+			<div>{{ info[2] }}</div>
+			<div>{{ info[3] }}</div>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="statistics-title">
+	<h2>Departments Ranking Board</h2>
+</div>
+<div class="ranking-board">
+	<div class="column-headings">
+		<div>RANK</div>
+		<div>NAME</div>
+		<div>POINTS</div>
+		<div>TASKS</div>
+	</div>
+	{% for info in departments_ranking_board %}
+		<div class="ranking-card">
+			<div>{{ info[0] }}</div>
+			<div>{{ info[1] }}</div>
+			<div>{{ info[2] }}</div>
+			<div>{{ info[3] }}</div>
+		</div>
+	{% endfor %}
+</div>
+
+{% if proportions_for_services %}
+	<div id="services-proportion">
+		<h2>Services:</h2>
+		{% for service in proportions_for_services %}
+			<h4>{{ service[0] }}: </h4><p>{{ service[1] }}</p>
+		{% endfor %}
+	</div>
+{% else %}
+	<h2 style="margin-left: 30px;">Services: 0</h2>
+{% endif %}
+
+<div id="orders-statistics">
+	<h2>Number of active orders: {{ number_of_active_orders }}</h2>
+	<h2>Number of completed orders: {{ number_of_completed_orders }}</h2>
+</div>
+{% endblock %}

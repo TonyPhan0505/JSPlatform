@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Filtered Active Orders - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('active_orders_filters') }}" style="color:white">Filters</a>
+		<a class="menu-item" href="{{ url_for('dashboard') }}" style="color:white">Dashboard</a>
+		<a class="menu-item" href="{{ url_for('logout') }}" style="color:white">Log Out</a>
+	</div>
+</nav>
+{% for active_order in filtered_orders %}
+	<a class="active-order-card" href="{{ url_for('manage_order', order_id = active_order.id) }}">
+		<h3>{{ active_order.service }}</h3>
+		<p><strong>Client: </strong>{{ active_order.client_name }}</p>
+		<p><strong>Created: </strong>{{ active_order.time_created }}</p>
+		<p><strong>Updated: </strong>{{ active_order.time_updated }}</p>
+		<p><strong>Tasks: </strong>{{ active_order.tasks.count() }}</p>
+		<p><strong>Completion Status: </strong>{{ active_order.completion_status }} %</p>
+	</a>
+{% endfor %}
+{% endblock %}

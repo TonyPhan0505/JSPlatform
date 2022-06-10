@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ current_task.title }} - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a class="menu-item" href="{{ url_for('manage_order', order_id = order_id) }}">Manage Order</a>
+		<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="site-name">
+			<h5>JS</h5>
+		</a>
+	</div>
+</nav>
+<div id="task-info-board">
+	<br><br><br>
+	<h2>{{ current_task.title|upper }}</h2>
+	<p><strong>Step Number: </strong>{{ current_task.step_number }}</p>
+	<p><strong>Departments: </strong>{{ current_task.departments }}</p>
+	<p><strong>Roles: </strong>{{ current_task.roles }}</p>
+	<p><strong>Participants: </strong>{{ participants }}</p>
+	<p><strong>Description: </strong>{{ current_task.description }}</p>
+	<form id="file-upload-form" method="post" enctype='multipart/form-data'>
+		{{ form.hidden_tag() }}
+		<div class="file-upload-form-field-container">
+			{{ form.file() }}
+		</div>
+		<div class="file-upload-form-field-container">
+			{{ form.submit() }}
+		</div>
+	</form>
+	{% if files %}
+		<p><strong>Documents:</strong></p>
+		{% for file in files %}
+			<div id="file-card">
+				<a href="{{ url_for('download_file', filename = file) }}">
+					<p>{{ file }}</p>
+				</a>
+				<a href="{{ url_for('delete_file', order_id = order_id, task_id = current_task.id, filename = file, decision = 'PENDING') }}">
+					<p><strong>X</strong></p>
+				</a>
+				
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+<div id="traverse-order-control-tools">
+	{% if current_user.has_permission('Add and Remove Participants') %}
+		<a href="{{ url_for('manage_people_on_task', task_id = current_task.id, previous = 'traverse_order') }}"><img src="../../static/images/add_users_icon.png"></a>
+	{% endif %}
+	{% if current_user.has_permission('Insert Tasks') %}
+		<a></a>
+		<a></a>
+		<a href="{{ url_for('manage_task_in_order', previous = 'traverse_order', order_id = order_id, task_id = current_task.id, instruction = 'insert') }}"><img src="../../static/images/insert_icon.png"></a>
+	{% endif %}
+	{% if current_user.has_permission('Edit Tasks') %}
+		<a></a>
+		<a></a>
+		<a href="{{ url_for('manage_task_in_order', previous = 'traverse_order', order_id = order_id, task_id = current_task.id, instruction = 'edit') }}"><img src="../../static/images/edit_icon.png"></a>
+	{% endif %}
+	{% if current_user.has_permission('Delete Tasks') %}
+		<a></a>
+		<a></a>
+		<a href="{{ url_for('manage_task_in_order', previous = 'traverse_order', order_id = order_id, task_id = current_task.id, instruction = 'delete') }}"><img src="../../static/images/delete_icon.png"></a>
+	{% endif %}
+	{% if current_task.status == 0 and current_user.has_permission('Check Tasks As Completed') %}
+		<a></a>
+		<a></a>
+		<a href="{{ url_for('check_task', order_id = order_id, task_id = current_task.id) }}"><img src="../../static/images/set_as_completed_icon.png"></a>
+	{% endif %}
+</div>
+
+{% endblock %}

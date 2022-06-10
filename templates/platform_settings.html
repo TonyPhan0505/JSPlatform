@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Settings - JustStart{% endblock %}
+{% block content %}
+<nav>
+	<div class="nav-items-list">
+		<a href="{{ url_for('dashboard') }}">Dashboard</a>
+		<a href="{{ url_for('logout') }}">Log Out</a>
+	</div>
+	<div class="nav-site-name">
+		<a class="page-name" href="{{ url_for('platform_settings') }}">
+			<h5>Settings</h5>
+		</a>
+	</div>
+</nav>
+
+{% for permission in permissions %}
+	{% set id_number = loop.index %}
+	<div id='{{ id_number }}' class="permission-setting-title">
+		<h2>{{ permission }}</h2>
+	</div>
+	<div class="permission-setting">
+		<div class="listed">
+			<h3>Roles</h3>
+			{% for role in roles %}
+				<div class="role-card">
+					<div class="role"><p>{{ role.name }}</p></div>
+					<div class="role-managing-icon">
+						<a class="role-managing-button" href="{{ url_for('authorize_role', role_id = role.id, permission_name = permission, _anchor = id_number) }}">
+							<img src="../static/images/authorize_role_icon.png">
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="allowed">
+			<h3>Allowed</h3>
+			{% for role in get_roles_with_permission(permission) %}
+				<div class="role-card">
+					<div class="role"><p>{{ role.name }}</p></div>
+					<div class="role-managing-icon">
+						<a class="role-managing-button" href="{{ url_for('forbid_role', role_id = role.id, permission_name = permission,  _anchor = id_number) }}">
+							<img src="../static/images/remove_icon.png">
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endfor %}
+
+<div class="horizontal-separator"></div>
+
+<div id="roles-feed">
+	<h3 style="margin-left: 25px">All Roles</h3>
+	{% for role in roles %}
+		<div id="role">
+			<div id="role-name"><p>{{ role.name }}</p></div>
+			<div id="role-deletion-icon">
+				<a id="role-deletion-button" href="{{ url_for('delete_role', role_id = role.id, decision = 'PENDING') }}">
+					<img src="../static/images/remove_icon.png">
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="horizontal-separator"></div>
+
+<div id="departments-feed">
+	<h3 style="margin-left: 25px">All Departments</h3>
+	{% for department in departments %}
+		<div id="department">
+			<div id="department-name"><p>{{ department.name }}</p></div>
+			<div id="department-deletion-icon">
+				<a id="department-deletion-button" href="{{ url_for('delete_department', department_id = department.id, decision = 'PENDING') }}">
+					<img src="../static/images/remove_icon.png">
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="horizontal-separator"></div>
+
+<div id="employees-feed">
+	<h3 style="margin-left: 25px">All Employees</h3>
+	{% for employee in employees %}
+		<div id="employee">
+			<div id="employee-email"><p>{{ employee.email }}</p></div>
+			<div id="control-employee-access">
+				{% if not employee.is_host() %}
+					<a id="empower-button" href="{{ url_for('empower', employee_id = employee.id) }}">
+						<p>Empower</p>
+					</a>
+					<a id="employee-deletion-button" href="{{ url_for('remove_employee', employee_id = employee.id, decision = 'PENDING') }}">
+						<img src="../static/images/remove_icon.png">
+					</a>
+				{% else %}
+					<p>Host</p>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="horizontal-separator"></div>
+
+<div id="pending-employees-feed">
+	<h3 style="margin-left: 25px">Pending</h3>
+	{% for employee in pending_employees %}
+		<div id="pending-employee">
+			<div id="employee-email"><p>{{ employee.email }}</p></div>
+			<div id="approval">
+				<a href="{{ url_for('approve', employee_id = employee.id, _anchor = 'pending-employees-feed') }}">
+					<p>Approve</p>
+				</a>
+				<a href="{{ url_for('remove_employee', employee_id = employee.id, decision = 'YES', _anchor = 'pending-employees-feed') }}">
+					<p>Remove</p>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+<br>
+<br>
+
+<a id="register-departments-button" href="{{ url_for('register_departments') }}">
+	<h4>Add Departments</h4>
+</a>
+<br>
+<a id="register-roles-button" href="{{ url_for('register_roles') }}">
+	<h4>Add Roles</h4>
+</a>
+<br>
+<a id="change-company-code-button" href="{{ url_for('change_company_code') }}">
+	<h4>Change Company's Code</h4>
+</a>
+
+{% endblock %}
