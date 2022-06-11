@@ -427,6 +427,7 @@ def delete_order(order_id, decision):
 		order = Order.query.get(order_id)
 		order_name = order.service
 		client_name = order.client_name
+		company_name = Company.query.get(order.company_id).name
 		time_created = order.time_created
 		tasks = order.tasks
 		associated_people = []
