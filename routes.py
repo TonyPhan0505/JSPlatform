@@ -463,10 +463,12 @@ def view_task_in_order(order_id, task_id):
 		filename = secure_filename(file.filename)
 		if filename in files:
 			return render_template("error_message.html", error_message = "THIS FILE ALREADY EXISTED. PLEASE CHANGE YOUR FILENAME OR REMOVE THE PREVIOUS ONE.", endpoint = "view_task_in_order", order_id = order_id, task_id = task_id)
+		elif '.' not in filename or filename.rsplit('.', 1)[1].lower() not in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'docx'}:
+			return render_template("error_message.html", error_message = "THIS FILE EXTENSION IS NOT SUPPORTED.", endpoint = "view_task_in_order", order_id = order_id, task_id = task_id)
 		else:
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			file = File(name = filename, task_id = current_task.id)
-			db.session.add(file)
+			document = File(name = filename, task_id = current_task.id)
+			db.session.add(document)
 			try:
 				db.session.commit()
 				return redirect(url_for('view_task_in_order', order_id = order_id, task_id = task_id))
