@@ -8,6 +8,7 @@ from helper_functions import *
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 import os
+import time
 
 invalid_characters = "`~!@#$%^&*()-_+=[{]}\|;:'" + '"' + ",<.>/?"
 
@@ -424,16 +425,40 @@ def delete_order(order_id, decision):
 		return render_template("are_you_sure_message.html", confirmation_message = "ARE YOU SURE YOU WANT TO DELETE THIS ORDER?", yes_endpoint = 'delete_order', no_endpoint = 'manage_order', order_id = order_id)
 	else:
 		order = Order.query.get(order_id)
+		order_name = order.service
+		client_name = order.client_name
+		time_created = order.time_created
 		tasks = order.tasks
+		associated_people = []
 		for task in tasks:
 			files = [file.name for file in File.query.filter(File.task_id == task.id).all()]
 			for file in files:
 				os.remove(os.path.join(app.config['UPLOAD_FOLDER'], file))
+			people = task.users
+			associated_people.extend(people)
 		db.session.delete(order)
 		try:
 			db.session.commit()
 		except:
 			db.session.rollback()
+		content = f"The order titled {order_name}, created on {time_created}, for the client called {client_name} has been deleted."
+		notification = Notification(time_created = time.asctime(), title = "Order Deleted", message = content)
+		db.session.add(notification)
+		try:
+			db.session.commit()
+		except:
+			db.session.rollback()
+		
+		for user in associated_people:
+			user.notifications.append(notification)
+			try:
+				db.session.commit()
+			except:
+				db.session.rollback()
+			receiver_email = user.email
+			msg = Message(f'Order Deleted', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
+			msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
+			mail.send(msg)
 	return redirect(url_for('dashboard'))
 
 @app.route("/traverse_order/<int:order_id>", methods = ['GET', 'POST'])
