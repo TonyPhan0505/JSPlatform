@@ -516,6 +516,18 @@ def check_task(order_id, task_id):
 	else:
 		return redirect(url_for('manage_order', order_id = order_id))
 
+@app.route("/redo_task/<int:order_id>/<int:task_id>", methods = ['GET'])
+@login_required
+def redo_task(order_id, task_id):
+	task = Task.query.get(task_id)
+	task.status = 0
+	try:
+		db.session.commit()
+	except:
+		db.session.rollback()
+	reset_completion_status_for_order(order_id)
+	return redirect(url_for('view_task_in_order', order_id = order_id, task_id = task_id))
+
 @app.route("/manage_task_in_order/<string:previous>/<int:order_id>/<int:task_id>/<string:instruction>", methods=['GET', 'POST'])
 @login_required
 def manage_task_in_order(previous, order_id, task_id, instruction):
