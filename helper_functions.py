@@ -451,6 +451,7 @@ def notify_people_of_first_task(task, people):
 
 def notify_people_on_next_task(task, people):
 	task_title = task.title
+	step_number = task.step_number
 	order_id = task.order_id
 	order = Order.query.get(order_id)
 	service_name = order.service
@@ -458,7 +459,7 @@ def notify_people_on_next_task(task, people):
 	order_creation_time = order.time_created
 	notification_creation_time = time.asctime()
 	company_name = Company.query.get(order.company_id).name
-	content = f"The previous task in the order titled '{service_name}', on {order_creation_time}, for the client called '{client_name}' has been completed. You can now begin working on the next task titled {task_title}."
+	content = f"Step {step_number} in the order titled '{service_name}', created on {order_creation_time}, for the client called '{client_name}' has been completed. You can now begin working on step {step_number + 1} titled {task_title}."
 
 	notification = Notification(time_created = notification_creation_time, title = "Job Assignment", message = content, redirection = f"/manage_order/{order_id}")
 	db.session.add(notification)
