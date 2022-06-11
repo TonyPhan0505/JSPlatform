@@ -1034,7 +1034,7 @@ footer{
 }
 
 #file-upload-form{
-	width: 11.25rem;
+	width: 15.25rem;
 	height: 7rem;
 	background-color: black;
 	overflow: hidden;
@@ -1046,10 +1046,11 @@ footer{
 }
 
 .file-upload-form-field-container{
-	width: 11rem;
+	width: 15rem;
 	height: 2.5rem;
 	background-color: black;
 	margin: 0;
+	overflow: auto;
 }
 
 #change-company-code{
