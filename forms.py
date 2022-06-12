@@ -68,9 +68,9 @@ class ActiveOrdersFiltersForm(FlaskForm):
 class CompletedOrdersFiltersForm(FlaskForm):
 	service = SelectField("Service", choices=[], validators = [])
 	client_name = StringField("Client", validators=[])
-	day = SelectField("Day Completed", choices = [str(day) for day in range(1, 32)], validators=[])
-	month = SelectField("Month Completed", choices = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], validators=[])
-	year = SelectField("Year Completed", choices = [str(year) for year in range(2022, 2091)], validators = [])
+	day = SelectField("Day Completed", choices = ['Not Sure'] + [str(day) for day in range(1, 32)], validators=[])
+	month = SelectField("Month Completed", choices = ['Not Sure', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], validators=[])
+	year = SelectField("Year Completed", choices = ['Not Sure'] + [str(year) for year in range(2022, 2091)], validators = [])
 	submit = SubmitField("Filter")
 
 class PasswordRecoveryRequestForm(FlaskForm):
