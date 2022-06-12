@@ -347,28 +347,46 @@ def get_client_filtered_completed_orders(company_id, client_name):
 
 def get_time_created_filtered_active_orders(company_id, day, month, year):
 	filtered_active_orders = []
-	if day and month and year:
-		active_orders = get_active_orders(company_id)
-		for order in active_orders:
-			time_created = order.time_created
+	active_orders = get_active_orders(company_id)
+	if day == 'Not Sure' and month == 'Not Sure' and year == 'Not Sure':
+			filtered_active_orders.extend(active_orders)
+	for order in active_orders:
+		time_created = order.time_created
+		if day != 'Not Sure':
 			recorded_day = time_created.split()[2]
+		else:
+			recorded_day = 'Not Sure'
+		if month != 'Not Sure':
 			recorded_month = time_created.split()[1]
+		else:
+			recorded_month = 'Not Sure'
+		if year == 'Not Sure':
 			recorded_year = time_created.split()[4]
-			if recorded_day == day and recorded_month == month and recorded_year == year:
-				filtered_active_orders.append(order)
+		else:
+			recorded_year = 'Not Sure'
+		if (recorded_day == day and recorded_month == month and recorded_year == year):
+			filtered_active_orders.append(order)
 	return filtered_active_orders
 
 def get_time_completed_filtered_completed_orders(company_id, day, month, year):
 	filtered_completed_orders = []
-	if day and month and year:
-		completed_orders = get_completed_orders(company_id)
-		for order in completed_orders:
-			time_completed = order.time_completed
+	completed_orders = get_completed_orders(company_id)
+	for order in completed_orders:
+		time_completed = order.time_completed
+		if day != 'Not Sure':
 			recorded_day = time_completed.split()[2]
+		else:
+			recorded_day = 'Not Sure'
+		if month != 'Not Sure':
 			recorded_month = time_completed.split()[1]
+		else:
+			recorded_month = 'Not Sure'
+		if year == 'Not Sure':
 			recorded_year = time_completed.split()[4]
-			if recorded_day == day and recorded_month == month and recorded_year == year:
-				filtered_completed_orders.append(order)
+		else:
+			recorded_year = 'Not Sure'
+		if recorded_day == day and recorded_month == month and recorded_year == year:
+			filtered_completed_orders.append(order)
 	return filtered_completed_orders
 
 def generate_temporary_password():
