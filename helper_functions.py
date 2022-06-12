@@ -423,7 +423,7 @@ def add_participant_to_task(task_id, user_id, current_user):
 		mail.send(msg)
 	
 
-def notify_people_of_first_task(task, people):
+def notify_people_of_first_task(task, people, current_user):
 	task_title = task.title
 	order_id = task.order_id
 	order = Order.query.get(order_id)
@@ -432,7 +432,10 @@ def notify_people_of_first_task(task, people):
 	order_creation_time = order.time_created
 	notification_creation_time = time.asctime()
 	company_name = Company.query.get(order.company_id).name
-	content = f"A new order titled '{service_name}' has been created on {order_creation_time} for the client called '{client_name}'. You are responsible for the first task, which is called '{task_title}'. Begin working on the task now."
+	author = current_user.name
+	author_email = current_user.email
+	author_department = Department.query.get(current_user.department_id).name
+	content = f"A new order titled '{service_name}' has been created on {order_creation_time} for the client called '{client_name}' by {author} ({author_email}) from the {author_department} department. You are responsible for the first task, which is called '{task_title}'. Begin working on the task now."
 
 	notification = Notification(time_created = notification_creation_time, title = "Job Assignment", message = content, redirection = f"/manage_order/{order_id}")
 	db.session.add(notification)
