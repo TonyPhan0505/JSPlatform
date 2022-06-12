@@ -379,7 +379,7 @@ def generate_temporary_password():
 		password += character
 	return password
 
-def add_participant_to_task(task_id, user_id):
+def add_participant_to_task(task_id, user_id, current_user):
 	task = Task.query.get(task_id)
 	user = User.query.get(user_id)
 	if user not in task.users:
@@ -398,7 +398,10 @@ def add_participant_to_task(task_id, user_id):
 		order_creation_time = order.time_created
 		notification_creation_time = time.asctime()
 		company_name = Company.query.get(order.company_id).name
-		content = f"You have been assigned a new task titled '{task_title}' in the order titled '{service_name}', created on {order_creation_time}, for the client called '{client_name}'. This task is step number {step_number} in the order."
+		author = current_user.name
+		author_email = current_user.email
+		author_department = Department.query.get(current_user.department_id).name
+		content = f"You have been assigned a new task titled '{task_title}' in the order titled '{service_name}', created on {order_creation_time}, for the client called '{client_name}', by {author} ({author_email}) from the {author_department} department. This task is step number {step_number} in the order."
 
 		reset_updated_time_for_order(task.order_id)
 
