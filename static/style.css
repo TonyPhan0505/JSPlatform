@@ -188,13 +188,6 @@ footer{
 	justify-content: space-evenly;
 }
 
-.horizontal-separator{
-	width: 80%;
-	height: 0.25%;
-	margin: 0.25% 10%;
-	background-color: grey;
-}
-
 #orders-feed{
 	width: 100%;
 	height: 88.25%;
