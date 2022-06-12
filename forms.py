@@ -60,9 +60,9 @@ class ChangeDepartmentAndRoleForm(FlaskForm):
 class ActiveOrdersFiltersForm(FlaskForm):
 	service = SelectField("Service", choices=[], validators = [])
 	client_name = StringField("Client", validators=[])
-	day = SelectField("Day Created", choices = [str(day) for day in range(1, 32)], validators=[])
-	month = SelectField("Month Created", choices = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'], validators=[])
-	year = SelectField("Year Created", choices = [str(year) for year in range(2022, 2091)], validators = [])
+	day = SelectField("Day Created", choices = ['Not Sure'] + [str(day) for day in range(1, 32)], validators=[])
+	month = SelectField("Month Created", choices = ['Not Sure', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'], validators=[])
+	year = SelectField("Year Created", choices = ['Not Sure'] + [str(year) for year in range(2022, 2091)], validators = [])
 	submit = SubmitField("Filter")
 
 class CompletedOrdersFiltersForm(FlaskForm):
