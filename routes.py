@@ -267,7 +267,7 @@ def create_new_order():
 				for task in all_tasks:
 					people_in_charge = get_people_in_charge_for_task(task, current_user)
 					for person in people_in_charge:
-						add_participant_to_task(task.id, person.id)
+						add_participant_to_task(task.id, person.id, current_user)
 				db.session.add(order)
 				try:
 					db.session.commit()
@@ -643,7 +643,7 @@ def manage_people_on_task(task_id, previous):
 @app.route("/add_person_to_task/<string:previous>/<int:task_id>/<int:user_id>", methods=['GET', 'POST'])
 @login_required
 def add_person_to_task(previous, task_id, user_id):
-	add_participant_to_task(task_id, user_id)
+	add_participant_to_task(task_id, user_id, current_user)
 	return redirect(url_for('manage_people_on_task', task_id = task_id, previous = previous))
 
 @app.route("/remove_person_from_task/<string:previous>/<int:task_id>/<int:user_id>", methods=['GET', 'POST'])
