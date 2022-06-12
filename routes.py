@@ -273,7 +273,7 @@ def create_new_order():
 					db.session.commit()
 					first_task = all_tasks[0]
 					people_in_charge_of_first_task = get_people_in_charge_for_task(first_task, current_user)
-					notify_people_of_first_task(first_task, people_in_charge_of_first_task)
+					notify_people_of_first_task(first_task, people_in_charge_of_first_task, current_user)
 					return render_template("success_message.html", success_message = "SUCCESSFULLY CREATED ORDER", endpoint = 'create_new_order')
 				except:
 					db.session.rollback()
