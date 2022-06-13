@@ -442,7 +442,7 @@ def delete_order(order_id, decision):
 			db.session.commit()
 		except:
 			db.session.rollback()
-		content = f"The order titled {order_name}, created on {time_created}, for the client called {client_name} has been deleted."
+		content = f"The order titled {order_name}, created on {time_created}, for the client called {client_name} has been deleted by {current_user.name} ({current_user.email}) from the department {Department.query.get(current_user.department_id).name}."
 		notification = Notification(time_created = time.asctime(), title = "Order Deleted", message = content)
 		db.session.add(notification)
 		try:
