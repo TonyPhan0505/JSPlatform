@@ -361,7 +361,7 @@ def get_time_created_filtered_active_orders(company_id, day, month, year):
 				recorded_month = time_created.split()[1]
 			else:
 				recorded_month = 'Not Sure'
-			if year == 'Not Sure':
+			if year != 'Not Sure':
 				recorded_year = time_created.split()[4]
 			else:
 				recorded_year = 'Not Sure'
@@ -385,7 +385,7 @@ def get_time_completed_filtered_completed_orders(company_id, day, month, year):
 				recorded_month = time_completed.split()[1]
 			else:
 				recorded_month = 'Not Sure'
-			if year == 'Not Sure':
+			if year != 'Not Sure':
 				recorded_year = time_completed.split()[4]
 			else:
 				recorded_year = 'Not Sure'
