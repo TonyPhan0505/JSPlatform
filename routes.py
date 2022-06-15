@@ -515,13 +515,16 @@ def delete_file(order_id, task_id, filename, decision):
 	if decision == 'PENDING':
 		return render_template("are_you_sure_message.html", confirmation_message = "ARE YOU SURE YOU WANT TO REMOVE THIS FILE?", yes_endpoint = 'delete_file', no_endpoint = 'traverse_order', order_id = order_id, task_id = task_id, filename = filename)
 	else:
-		os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		file = File.query.filter_by(name = filename, task_id = task_id).first()
-		db.session.delete(file)
 		try:
-			db.session.commit()
+			os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			file = File.query.filter_by(name = filename, task_id = task_id).first()
+			db.session.delete(file)
+			try:
+				db.session.commit()
+			except:
+				db.session.rollback()
 		except:
-			db.session.rollback()
+			return redirect(url_for('traverse_order', order_id = order_id))
 	return redirect(url_for('traverse_order', order_id = order_id))
 
 @app.route("/check_task/<int:order_id>/<int:task_id>", methods = ['GET'])
