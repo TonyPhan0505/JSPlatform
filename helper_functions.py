@@ -329,20 +329,24 @@ def get_service_filtered_completed_orders(company_id, service_name):
 
 def get_client_filtered_active_orders(company_id, client_name):
 	filtered_active_orders = []
-	if client_name:
-		active_orders = get_active_orders(company_id)
+	active_orders = get_active_orders(company_id)
+	if client_name != 'All':
 		for order in active_orders:
 			if order.client_name == client_name:
 				filtered_active_orders.append(order)
+	else:
+		filtered_active_orders.extend(active_orders)
 	return filtered_active_orders
 
 def get_client_filtered_completed_orders(company_id, client_name):
 	filtered_completed_orders = []
-	if client_name:
-		completed_orders = get_completed_orders(company_id)
+	completed_orders = get_completed_orders(company_id)
+	if client_name != 'All':
 		for order in completed_orders:
 			if order.client_name == client_name:
 				filtered_completed_orders.append(order)
+	else:
+		filtered_completed_orders.extend(completed_orders)
 	return filtered_completed_orders
 
 def get_time_created_filtered_active_orders(company_id, day, month, year):
