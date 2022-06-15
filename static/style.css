@@ -1027,8 +1027,8 @@ footer{
 }
 
 #file-upload-form{
-	width: 15.25rem;
-	height: 7rem;
+	width: 19.25rem;
+	height: 10rem;
 	background-color: black;
 	overflow: hidden;
 	margin-left: 3.125rem;
@@ -1039,8 +1039,8 @@ footer{
 }
 
 .file-upload-form-field-container{
-	width: 15rem;
-	height: 2.5rem;
+	width: 19rem;
+	height: 3rem;
 	background-color: black;
 	margin: 0;
 	overflow: auto;
