@@ -491,7 +491,7 @@ def notify_people_on_next_task(task, people):
 	order_creation_time = order.time_created
 	notification_creation_time = time.asctime()
 	company_name = Company.query.get(order.company_id).name
-	if step_number > 1:
+	if step_number > 2:
 		content = f"Steps 1 to {step_number} in the order titled '{service_name}', created on {order_creation_time}, for the client called '{client_name}' have been completed. You can now begin working on step {step_number + 1} titled {task_title}."
 	else:
 		content = f"The 1st step in the order titled '{service_name}', created on {order_creation_time}, for the client called '{client_name}' has been completed. You can now begin working on the 2nd task titled {task_title}."
