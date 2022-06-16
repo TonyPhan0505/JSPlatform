@@ -556,6 +556,37 @@ def redo_task(order_id, task_id):
 	except:
 		db.session.rollback()
 	reset_completion_status_for_order(order_id)
+	
+	task_title = task.title
+	step_number = task.step_number
+	order_id = task.order_id
+	order = Order.query.get(order_id)
+	service_name = order.service
+	client_name = order.client_name
+	order_creation_time = order.time_created
+	notification_creation_time = time.asctime()
+	company_name = Company.query.get(order.company_id).name
+	author = current_user.name
+	author_email = current_user.email
+	author_department = Department.query.get(current_user.department_id).name
+	content = f"{author} ({author_email}) from the {author_department} department has demanded the task titled '{task_title}' with step number {step_number} in the order titled '{service_name}' for the client called '{client_name}' created on {order_creation_time} to be redone. You were one of the employees assigned to this task. Go back and redo the task now!"
+	notification = Notification(time_created = notification_creation_time, title = "Redo Your Task", message = content, redirection = f"/manage_order/{order_id}")
+	db.session.add(notification)
+	try:
+		db.session.commit()
+	except:
+		db.session.rollback()
+	for user in task.users:
+		user.notifications.append(notification)
+		try:
+			db.session.commit()
+		except:
+			db.session.rollback()
+		receiver_email = user.email
+		msg = Message(f'Redo Your Task', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
+		msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
+		mail.send(msg)
+	
 	return redirect(url_for('view_task_in_order', order_id = order_id, task_id = task_id))
 
 @app.route("/manage_task_in_order/<string:previous>/<int:order_id>/<int:task_id>/<string:instruction>", methods=['GET', 'POST'])
