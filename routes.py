@@ -438,6 +438,7 @@ def delete_order(order_id, decision):
 				os.remove(os.path.join(app.config['UPLOAD_FOLDER'], file))
 			people = task.users
 			associated_people.extend(people)
+		associated_people = set(associated_people)
 		db.session.delete(order)
 		try:
 			db.session.commit()
@@ -450,7 +451,6 @@ def delete_order(order_id, decision):
 			db.session.commit()
 		except:
 			db.session.rollback()
-		
 		for user in associated_people:
 			user.notifications.append(notification)
 			try:
@@ -461,6 +461,7 @@ def delete_order(order_id, decision):
 			msg = Message(f'Order Deleted', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
 			msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
 			mail.send(msg)
+			sent.append(user)
 	return redirect(url_for('dashboard'))
 
 @app.route("/traverse_order/<int:order_id>", methods = ['GET', 'POST'])
