@@ -457,13 +457,12 @@ def delete_order(order_id, decision):
 				db.session.commit()
 			except:
 				db.session.rollback()
+			reset_performance_point_for_user(user)
 			receiver_email = user.email
 			msg = Message(f'Order Deleted', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
 			msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
 			mail.send(msg)
 			sent.append(user)
-		for user in associated_people:
-			reset_performance_point_for_user(user)
 	return redirect(url_for('dashboard'))
 
 @app.route("/traverse_order/<int:order_id>", methods = ['GET', 'POST'])
@@ -585,12 +584,11 @@ def redo_task(order_id, task_id):
 			db.session.commit()
 		except:
 			db.session.rollback()
+		reset_performance_point_for_user(user)
 		receiver_email = user.email
 		msg = Message(f'Redo Your Task', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
 		msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
 		mail.send(msg)
-	for user in task.users:
-		reset_performance_point_for_user(user)
 	
 	return redirect(url_for('view_task_in_order', order_id = order_id, task_id = task_id))
 
