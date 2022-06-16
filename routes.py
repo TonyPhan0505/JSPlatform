@@ -70,7 +70,7 @@ def register_departments():
 			if is_not_a_registered_department(name, company):
 				if [c for c in name if c in invalid_characters]:
 					return render_template("error_message.html", error_message = "THE DEPARTMENT'S NAME CONTAINS INVALID CHARACTERS", endpoint = "register_departments")
-				department = Department(name = name, performance_point = 0.0, company_id = company.id)
+				department = Department(name = name, performance_point = 100.0, company_id = company.id)
 				db.session.add(department)
 				try:
 					db.session.commit()
@@ -130,7 +130,7 @@ def register_user():
 				if [c for c in name if c in invalid_characters]:
 					return render_template("error_message.html", error_message = "YOUR NAME CONTAINS INVALID CHARACTERS", endpoint = "register_user")
 				email = form.email.data
-				user = User(name = name, email = email, performance_point = 0.0, company_code = company_code, company_id = company.id)
+				user = User(name = name, email = email, performance_point = 100.0, company_code = company_code, company_id = company.id)
 				password = form.password_one.data
 				user.set_password(password)
 				if company.users.count() == 0:
