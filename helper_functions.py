@@ -270,10 +270,10 @@ def get_employees_ranking_board(company_id):
 	ranking_board = []
 	rank = 1
 	for employee in employees:
-		if employee.performance_point != 0.00:
+		if employee.performance_point != 0.0:
 			performance_point = employee.performance_point
 		else:
-			performance_point = 100.00
+			performance_point = 100.0
 		info = (rank, employee.name, performance_point, get_number_of_completed_tasks_for_user(employee))
 		ranking_board.append(info)
 		rank += 1
