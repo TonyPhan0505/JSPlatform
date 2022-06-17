@@ -410,6 +410,24 @@ def insert_standard_task(procedure_id, current_step_number):
 				try:
 					db.session.commit()
 					reset_step_number_for_standard_tasks_in_procedure_after_insertion(procedure_id, current_step_number, new_standard_task)
+					content = f"A new standard task has been added to the procedure titled '{procedure.service}'."
+					notification = Notification(time_created = time.asctime(), title = "Procedure Editted", message = content)
+					db.session.add(notification)
+					try:
+						db.session.commit()
+					except:
+						db.session.rollback()
+					users = Company.query.get(current_user.company_id).users
+					for user in users:
+						user.notifications.append(notification)
+						try:
+							db.session.commit()
+						except:
+							db.session.rollback()
+						receiver_email = user.email
+						msg = Message(f'Procedure Editted', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
+						msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
+						mail.send(msg)
 					return redirect(url_for('manage_procedure', service_name = procedure.service))
 				except:
 					db.session.rollback()
