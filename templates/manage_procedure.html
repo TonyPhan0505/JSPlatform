@@ -84,8 +84,12 @@
 					<div class="control-tools">
 						{% if current_user.has_permission('Edit Standard Tasks') %}
 							<a href="{{ url_for('manage_standard_task', service_name = service_name, standard_task_id = standard_task.id, instruction = 'edit') }}"><img src="../static/images/edit_icon.png"></a>
+							<a></a>
 						{% endif %}
-						<a></a>
+						{% if current_user.has_permission('Insert Standard Tasks') %}
+							<a href="{{ url_for('insert_standard_task', procedure_id = get_procedure_id(service_name), current_step_number = standard_task.step_number) }}"><img src="../static/images/insert_icon.png"></a>
+							<a></a>
+						{% endif %}
 						{% if current_user.has_permission('Delete Standard Tasks') %}
 							<a href="{{ url_for('manage_standard_task', service_name = service_name, standard_task_id = standard_task.id, instruction = 'delete') }}"><img src="../static/images/delete_icon.png"></a>
 						{% endif %}
