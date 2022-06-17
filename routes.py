@@ -395,7 +395,7 @@ def manage_standard_task(service_name, standard_task_id, instruction):
 		return redirect(url_for('delete_standard_task', service_name = service_name, standard_task_id = standard_task_id, decision = 'PENDING'))
 
 @app.route("/insert_standard_task/<int:procedure_id>/<int:current_step_number>", methods = ['GET', 'POST'])
-@login_required()
+@login_required
 def insert_standard_task(procedure_id, current_step_number):
 	if current_user.has_permission('Insert Standard Tasks'):
 		form = CreateTaskForm(csrf_enabled = False)
