@@ -22,6 +22,7 @@ permissions = ["Create Orders",
 		"Create Procedures",
 		"Delete Procedures",
 		"Create Standard Tasks",
+	       	"Insert Standard Tasks",
 		"Delete Standard Tasks",
 		"Edit Standard Tasks"]
 
