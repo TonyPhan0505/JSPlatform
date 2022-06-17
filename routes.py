@@ -390,6 +390,31 @@ def manage_standard_task(service_name, standard_task_id, instruction):
 	else:
 		return redirect(url_for('delete_standard_task', service_name = service_name, standard_task_id = standard_task_id, decision = 'PENDING'))
 
+@app.route("/insert_standard_task/<int:procedure_id>/<int:current_step_number>", methods = ['GET', 'POST'])
+@login_required()
+def insert_standard_task(procedure_id, current_step_number):
+	if current_user.has_permission('Insert Standard Tasks'):
+		form = CreateTaskForm(csrf_enabled = False)
+		if form.validate_on_submit():
+			departments = form.departments.data
+			roles = form.roles.data
+			if are_registered_departments(departments) and are_registered_roles(roles):
+				procedure = Procedure.query.get(procedure_id)
+				temporary_step_number_for_new_standard_task = procedure.standard_tasks.count() + 1
+				new_standard_task = StandardTask(title = form.title.data, departments = departments, roles = roles, description = form.description.data, step_number = temporary_step_number_for_new_standard_task, procedure_id = procedure_id)
+				db.session.add(new_standard_task)
+				try:
+					db.session.commit()
+					reset_step_number_for_standard_tasks_in_procedure_after_insertion(procedure_id, current_step_number, new_standard_task)
+					return redirect(url_for('manage_procedure', service_name = procedure.service))
+				except:
+					db.session.rollback()
+			else:
+				return render_template("error_message.html", error_message = "UNREGISTERED DEPARTMENTS/ROLES DETECTED", endpoint = "insert_standard_task", procedure_id = procedure_id, current_step_number = current_step_number)
+		return render_template("insert_task.html", form = form)
+	else:
+		return render_template("error_message.html", error_message = "YOU DO NOT HAVE PERMISSION TO ACCESS THIS PAGE", endpoint = "dashboard")
+	
 @app.route("/delete_standard_task/<string:service_name>/<int:standard_task_id>/<string:decision>", methods=['GET', 'POST'])
 @login_required
 def delete_standard_task(service_name, standard_task_id, decision):
@@ -643,8 +668,8 @@ def insert_new_task_into_order(order_id, current_step_number):
 				except:
 					db.session.rollback()
 			else:
-				return render_template("error_message.html", error_message = "UNREGISTERED DEPARTMENT(S) DETECTED", endpoint = "insert_new_task_into_order", order_id = order_id, current_step_number = current_step_number)
-		return render_template("insert_new_task_into_order.html", form = form, order_id = order_id)
+				return render_template("error_message.html", error_message = "UNREGISTERED DEPARTMENTS/ROLES DETECTED", endpoint = "insert_new_task_into_order", order_id = order_id, current_step_number = current_step_number)
+		return render_template("insert_task.html", form = form)
 	else:
 		return render_template("error_message.html", error_message = "YOU DO NOT HAVE PERMISSION TO ACCESS THIS PAGE", endpoint = "dashboard")
 
