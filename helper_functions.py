@@ -168,6 +168,20 @@ def reset_step_number_for_tasks_in_order_after_insertion(order_id, current_step_
 		except:
 			db.session.rollback()
 
+def reset_step_number_for_standard_tasks_in_procedure_after_insertion(procedure_id, current_step_number, new_standard_task):
+	procedure = Procedure.query.get(procedure_id)
+	standard_tasks = get_standard_tasks(procedure.service, procedure.company_id).copy()
+	standard_tasks.pop(-1)
+	standard_tasks.insert(current_step_number - 1, new_standard_task)
+	step_number = 1
+	for standard_task in standard_tasks:
+		standard_task.step_number = step_number
+		try:
+			db.session.commit()
+			step_number += 1
+		except:
+			db.session.rollback()
+			
 def get_relevant_people_for_task(task, current_user):
 	departments = task.departments.split(", ")
 	relevant_people = []
