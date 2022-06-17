@@ -68,7 +68,7 @@
 		<a></a>
 		<a href="{{ url_for('redo_task', order_id = order_id, task_id = current_task.id) }}"><img src="../../static/images/undo_icon.png"></a>
 	{% endif %}
-	{% if current_task.status == 0 and current_user.has_permission('Check Tasks As Completed') %}
+	{% if current_task.status == 0 and current_user.has_permission('Mark Tasks As Completed') %}
 		<a></a>
 		<a></a>
 		<a href="{{ url_for('check_task', order_id = order_id, task_id = current_task.id) }}"><img src="../../static/images/set_as_completed_icon.png"></a>
