@@ -363,6 +363,10 @@ def manage_procedure(service_name):
 		standard_tasks = []
 	return render_template("manage_procedure.html", form = form, service_name = service_name, standard_tasks = standard_tasks, current_user = current_user)
 
+@app.template_global()
+def get_procedure_id(service_name):
+	return Procedure.query.filter_by(service = service_name, company_id = current_user.company_id).first().id
+
 @app.route("/manage_standard_task/<string:service_name>/<int:standard_task_id>/<string:instruction>", methods = ['GET', 'POST'])
 @login_required
 def manage_standard_task(service_name, standard_task_id, instruction):
