@@ -404,31 +404,14 @@ def insert_standard_task(procedure_id, current_step_number):
 			roles = form.roles.data
 			if are_registered_departments(departments) and are_registered_roles(roles):
 				procedure = Procedure.query.get(procedure_id)
+				service_name = procedure.service
 				temporary_step_number_for_new_standard_task = procedure.standard_tasks.count() + 1
 				new_standard_task = StandardTask(title = form.title.data, departments = departments, roles = roles, description = form.description.data, step_number = temporary_step_number_for_new_standard_task, procedure_id = procedure_id)
 				db.session.add(new_standard_task)
 				try:
 					db.session.commit()
 					reset_step_number_for_standard_tasks_in_procedure_after_insertion(procedure_id, current_step_number, new_standard_task)
-					content = f"A new standard task has been added to the procedure titled '{procedure.service}'."
-					notification = Notification(time_created = time.asctime(), title = "Procedure Editted", message = content)
-					db.session.add(notification)
-					try:
-						db.session.commit()
-					except:
-						db.session.rollback()
-					users = Company.query.get(current_user.company_id).users
-					for user in users:
-						user.notifications.append(notification)
-						try:
-							db.session.commit()
-						except:
-							db.session.rollback()
-						receiver_email = user.email
-						msg = Message(f'Procedure Editted', sender = (f'{company_name}', 'juststartplatform@aol.com'), recipients = [receiver_email])
-						msg.body = content + '\n\nGo to Account Info on JS Platform for more information.'
-						mail.send(msg)
-					return redirect(url_for('manage_procedure', service_name = procedure.service))
+					return redirect(url_for('manage_procedure', service_name = service_name))
 				except:
 					db.session.rollback()
 			else:
