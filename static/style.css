@@ -98,8 +98,8 @@ nav
 }
 
 #right-flex-container{
-	width: 50%;
-	height: 50%;
+	width: 30%;
+	height: 30%;
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
