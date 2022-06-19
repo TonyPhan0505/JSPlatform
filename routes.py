@@ -791,7 +791,7 @@ def manage_user():
 	notifications = notifications
 	)
 
-@app.route("/delete_notification/<int:notification_id>")
+@app.route("/delete_notification/<int:notification_id>", methods = ['GET', 'POST'])
 @login_required
 def delete_notification(notification_id):
 	notification = Notification.query.get(notification_id)
@@ -802,7 +802,7 @@ def delete_notification(notification_id):
 		db.session.rollback()
 	return redirect(url_for('manage_user'))
 
-@app.route("/password_change_confirmation/<string:password>")
+@app.route("/password_change_confirmation/<string:password>", methods = ['GET', 'POST'])
 @login_required
 def password_change_confirmation(password):
 	msg = Message('Your Password Has Been Changed', sender = ('JS Platform', 'juststartplatform@aol.com'), recipients = [current_user.email])
@@ -847,8 +847,8 @@ def change_department_and_role():
 			db.session.rollback()
 	return render_template("change_department_and_role.html", form = form)
 
-@login_required
 @app.route("/platform_settings", methods = ['GET', 'POST'])
+@login_required
 def platform_settings():
 	if not Department.query.filter(Department.company_id == current_user.company_id).all():
 		return redirect(url_for('register_departments'))
