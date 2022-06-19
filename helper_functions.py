@@ -279,26 +279,26 @@ def reset_updated_time_for_order(order_id):
 
 def get_employees_ranking_board(company_id):
 	employees = sorted(User.query.filter(User.company_id == company_id).all(), 
-		key = lambda employee: (get_number_of_completed_tasks_for_user(employee), employee.performance_point), 
+		key = lambda employee: (employee.performance_point > 0, employee.performance_point), 
 		reverse = True)
 	ranking_board = []
 	rank = 1
 	for employee in employees:
 		performance_point = employee.performance_point
-		info = (rank, employee.name, performance_point, get_number_of_completed_tasks_for_user(employee))
+		info = (rank, employee.name, performance_point, get_number_of_tasks_for_user(employee))
 		ranking_board.append(info)
 		rank += 1
 	return ranking_board
 
 def get_departments_ranking_board(company_id):
 	departments = sorted(Department.query.filter(Department.company_id == company_id).all(), 
-		key = lambda department: (get_number_of_completed_tasks_for_department(department.name, company_id), department.performance_point), 
+		key = lambda department: (department.performance_point > 0, department.performance_point), 
 		reverse = True)
 	ranking_board = []
 	rank = 1
 	for department in departments:
 		performance_point = department.performance_point
-		info = (rank, department.name, department.performance_point, get_number_of_completed_tasks_for_department(department.name, company_id))
+		info = (rank, department.name, department.performance_point, get_number_of_tasks_for_department(department.name, company_id))
 		ranking_board.append(info)
 		rank += 1
 	return ranking_board
