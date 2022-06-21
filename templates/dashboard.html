@@ -37,7 +37,7 @@
 					<a class="active-order-card" href="{{ url_for('manage_order', order_id = active_order.id) }}">
 						{% set numOfUsersIncompleteTasks = get_number_of_incomplete_tasks_for_current_user_in_order(active_order.id) %}
 						{% if numOfUsersIncompleteTasks %}
-							<p>Your Incomplete Tasks: <strong>{{ numOfUsersIncompleteTasks }}</strong></p>
+							<i><p>Your Incomplete Tasks: <strong>{{ numOfUsersIncompleteTasks }}</strong></p></i>
 						{% endif %}
 						<h3>{{ active_order.service }}</h3>
 						<p><strong>Client: </strong>{{ active_order.client_name }}</p>
