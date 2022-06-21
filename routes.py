@@ -245,6 +245,7 @@ def completed_orders_filters():
 	if form.validate_on_submit():
 		service_name = form.service.data
 		client_name = form.client_name.data
+		if not client_name: client_name = 'All'
 		day = form.day.data
 		month = form.month.data
 		year = form.year.data
