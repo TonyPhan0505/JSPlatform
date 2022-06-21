@@ -1123,13 +1123,13 @@ footer{
 	overflow: hidden;
 }
 
-@media only screen and (min-width: 250px) and (max-width: 610px){
+@media only screen and (max-width: 560px){
 	html{
 		font-size: 8px;
 	}
 }
 
-@media only screen and (min-width: 611px) and (max-width: 850px){
+@media only screen and (min-width: 561px){
 	html{
 		font-size: 12px;
 	}
