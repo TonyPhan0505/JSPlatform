@@ -205,9 +205,10 @@ def get_number_of_incomplete_tasks_for_current_user_in_order(order_id):
 	tasks = order.tasks
 	count = 0
 	for task in tasks:
-		users = task.users
-		if current_user in users:
-			count += 1
+		if task.status == 0:
+			users = task.users
+			if current_user in users:
+				count += 1
 	return count
 
 @app.route("/active_orders_filters", methods = ['GET', 'POST'])
