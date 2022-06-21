@@ -589,6 +589,7 @@ def check_task(order_id, task_id):
 			notify_people_on_next_task(next_task, responsible_people)
 		return redirect(url_for('traverse_order', order_id = order_id))
 	else:
+		order.set_time_completed()
 		return redirect(url_for('manage_order', order_id = order_id))
 
 @app.route("/redo_task/<int:order_id>/<int:task_id>", methods = ['GET'])
