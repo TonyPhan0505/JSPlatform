@@ -154,7 +154,7 @@ footer{
 {
 	display: block;
 	width: 70%;
-	height: 6%;
+	height: 5%;
 	color: white;
 	text-align: center;
 }
@@ -508,9 +508,8 @@ footer{
 	border: 0.125rem solid black;
 	border-radius: 0.3125rem;
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: center;
-	align-content: space-evenly;
+	align-items: center;
 }
 
 #departments-registration-form,
