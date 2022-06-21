@@ -590,6 +590,10 @@ def check_task(order_id, task_id):
 		return redirect(url_for('traverse_order', order_id = order_id))
 	else:
 		order.set_time_completed()
+		try:
+			db.session.commit()
+		except:
+			db.session.rollback()
 		return redirect(url_for('manage_order', order_id = order_id))
 
 @app.route("/redo_task/<int:order_id>/<int:task_id>", methods = ['GET'])
