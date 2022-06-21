@@ -704,7 +704,7 @@ footer{
 	background-color: #FFEFD5;
 	float: left;
 	text-align: left;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .name-of-user{
@@ -713,7 +713,7 @@ footer{
 	background-color: #FFEFD5;
 	float: left;
 	text-align: center;
-	overflow: hidden;
+	overflow: auto;
 }
 
 #removal-of-participant,
