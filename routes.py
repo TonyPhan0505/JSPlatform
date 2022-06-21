@@ -199,6 +199,17 @@ def dashboard():
 	completed_orders = get_completed_orders(current_user.company_id)[::-1]
 	return render_template("dashboard.html", active_orders = active_orders, completed_orders = completed_orders, current_user = current_user)
 
+@app.template_global()
+def get_number_of_incomplete_tasks_for_current_user_in_order(order_id):
+	order = Order.query.get(order_id)
+	tasks = order.tasks
+	count = 0
+	for task in tasks:
+		users = task.users
+		if current_user in users:
+			count += 1
+	return count
+
 @app.route("/active_orders_filters", methods = ['GET', 'POST'])
 @login_required
 def active_orders_filters():
