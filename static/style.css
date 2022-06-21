@@ -1129,7 +1129,7 @@ footer{
 	}
 }
 
-@media only screen and (min-width: 561px){
+@media only screen and (min-width: 561px) and (max-width: 860px){
 	html{
 		font-size: 12px;
 	}
