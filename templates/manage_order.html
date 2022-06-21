@@ -19,6 +19,10 @@
 		<p><strong>Updated: </strong>{{ order.time_updated }}</p>
 		<p><strong>Tasks: </strong>{{ order.tasks.count() }}</p>
 		<p><strong>Completion Status: </strong>{{ order.completion_status }} %</p>
+		{% set numOfUsersIncompleteTasks = get_number_of_incomplete_tasks_for_current_user_in_order(order.id) %}
+		{% if numOfUsersIncompleteTasks %}
+			<i><p>Your Incomplete Tasks: <strong>{{ numOfUsersIncompleteTasks }}</strong></p></i>
+		{% endif %}
 		<div id="resume-traversing">
 			<a class="resume-traversing-button" href="{{ url_for('traverse_order', order_id = order.id) }}">
 				<h5>RESUME</h5>
