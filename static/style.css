@@ -1143,6 +1143,6 @@ footer{
 
 @media only screen and (min-height: 1px) and (max-height: 99px) {
 	#main-flex-container{
-		visibility: hidden;
+		display: none;
 	}
 }
