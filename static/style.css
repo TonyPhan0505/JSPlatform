@@ -1135,7 +1135,7 @@ footer{
 	}
 }
 
-@media only screen and (max-height: 705px) {
+@media only screen and (max-height: 650px) {
 	html{
 		font-size: 8px;
 	}
