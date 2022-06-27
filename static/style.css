@@ -91,6 +91,7 @@ nav
 	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
 	background-color: black;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 }
