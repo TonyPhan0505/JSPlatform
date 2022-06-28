@@ -85,13 +85,11 @@ nav
 
 #left-flex-container a{
 	width: 50%;
-	height: 16%;
-	margin: 5%;
+	height: 20%;
 	border-radius: 0.3125rem;
 	box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.3);
 	background-color: black;
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
