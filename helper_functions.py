@@ -235,7 +235,9 @@ def reset_performance_point_for_user(current_user):
 
 def get_tasks_for_department(department_name, company_id):
 	orders_in_company = Order.query.filter(Order.company_id == company_id).all()
-	tasks_in_company = [order.tasks for order in orders_in_company]	
+	tasks_in_company = []
+	for order in orders_in_company:
+		tasks_in_company.extend(order.tasks)
 	tasks_for_department = []
 	for task in tasks_in_company:
 		if department_name in task.departments:
