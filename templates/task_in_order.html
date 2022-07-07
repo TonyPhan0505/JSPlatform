@@ -3,7 +3,8 @@
 {% block content %}
 <nav>
 	<div class="nav-items-list">
-		<a class="menu-item" href="{{ url_for('manage_order', order_id = order_id) }}">Manage Order</a>
+		<a class="menu-item" href="{{ url_for('traverse_order', order_id = order_id) }}">Refresh</a>
+		<a class="menu-item" href="{{ url_for('manage_order', order_id = order_id) }}">View Order</a>
 		<a class="menu-item" href="{{ url_for('logout') }}">Log Out</a>
 	</div>
 	<div class="nav-site-name">
