@@ -8,7 +8,6 @@ from os import environ
 import re
 
 app = Flask(__name__)
-mail = Mail(app)
 app.config["SECRET_KEY"] = "a^U2YB*Lw`bH#?)0{NICKhD&yAE|vOr}+85xJos6$ZzS3QnglG<4e@>7V[j(RpPX!1c9fT~mtFq]kdiuWM_"
 uri = os.getenv("DATABASE_URL")
 if uri and uri.startswith("postgres://"):
