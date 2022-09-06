@@ -1,2 +1,2 @@
 # juststartwebapplication
-Live link: www.jsplatform.herokuapp.com
+Live link: http://jsplatform.herokuapp.com
