@@ -1,2 +1,2 @@
 # juststartwebapplication
-This is my personal project built for a small Logistics company in Vietnam.
+A web app to manage work-flow for a Logistics company in Vietnam.
