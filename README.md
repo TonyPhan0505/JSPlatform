@@ -1,2 +1,2 @@
-# juststartwebapplication
-A web app to manage work-flow for a Logistics company in Vietnam.
+# JSPlatform
+A Flask web app to manage work-flow and do collaborative work in companies.
