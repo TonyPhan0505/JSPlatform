@@ -2,6 +2,10 @@
 A Flask web app to manage work-flow and do collaborative work.
 Tech-stack: Python, HTML, CSS, SQLite3
 
+# Run the app:
+In the directory with the app.py file, enter the following command into the terminal:
+### flask run
+
 # Overview
 1. Company registration and account registration:
 <img width="1440" alt="Screenshot 2023-07-19 at 11 26 34 AM" src="https://github.com/TonyPhan0505/JSPlatform/assets/87828913/c1301077-15bf-4884-aba2-cd5fb9a225b5">
