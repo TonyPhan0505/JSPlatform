@@ -1,6 +1,7 @@
 # JSPlatform
 A Flask web app to manage work-flow and do collaborative work.
-Tech-stack: Python, HTML, CSS, SQLite3
+Tech-stack: Python, HTML, CSS, SQLite3.
+#### Status: completed.
 
 # Run the app:
 In the directory with the app.py file, enter the following command into the terminal:
