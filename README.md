@@ -12,7 +12,7 @@ In the directory with the app.py file, enter the following command into the term
 <img width="1440" alt="Screenshot 2023-07-19 at 11 26 34 AM" src="https://github.com/TonyPhan0505/JSPlatform/assets/87828913/c1301077-15bf-4884-aba2-cd5fb9a225b5">
 <img width="1440" alt="Screenshot 2023-07-19 at 11 26 43 AM" src="https://github.com/TonyPhan0505/JSPlatform/assets/87828913/6a9811d2-09d7-4633-9455-19794760d6a9">
 
-#### 2. Login:
+#### 2. Login page:
 <img width="1440" alt="Screenshot 2023-07-19 at 11 26 51 AM" src="https://github.com/TonyPhan0505/JSPlatform/assets/87828913/fc6e13cc-cf6f-4a05-a24e-95a48bb106ca">
 
 #### 3. Dashboard (where you see active and completed tasks):
