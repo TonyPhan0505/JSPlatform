@@ -4,7 +4,7 @@ Tech-stack: Python, HTML, CSS, SQLite3
 
 # Run the app:
 In the directory with the app.py file, enter the following command into the terminal:
-### flask run
+### `flask run`
 
 # Overview
 1. Company registration and account registration:
