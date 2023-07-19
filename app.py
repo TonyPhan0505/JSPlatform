@@ -25,6 +25,8 @@ app.config['UPLOAD_FOLDER'] = 'static/files'
 mail = Mail(app)
 db = SQLAlchemy(app)
 
+app.app_context().push()
+
 import routes
 
 from models import *
